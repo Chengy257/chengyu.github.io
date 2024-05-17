@@ -6,13 +6,14 @@
     <description>Recent content in Posts on My Blog</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
+    <lastBuildDate>Mon, 01 Jan 0001 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://github.com/Chengy257/chengyu.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
       <link>https://github.com/Chengy257/chengyu.github.io/posts/fisrt-blog/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://github.com/Chengy257/chengyu.github.io/posts/fisrt-blog/</guid>
-      <description>title = &amp;lsquo;Chengyu Fisrt Blog&amp;rsquo; date = 2024-05-17T11:28:54+08:00 draft = false&#xA;1111 2222 +++</description>
+      <description>&amp;mdash; title: &amp;ldquo;Fisrt Blog&amp;rdquo; date: 2022-04-16T11:47:19+08:00 draft: false &amp;mdash; My First Blog test For test!&#xA;+++</description>
     </item>
   </channel>
 </rss>
