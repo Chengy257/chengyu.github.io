@@ -1,0 +1,158 @@
+#########################################################################
+# File Name: config.yml
+# Author: ChengYu (Cy257)
+# Description: Hugo + PaperMod 博客配置
+# Site: https://chengy257.github.io/
+#########################################################################
+
+baseURL: "https://chengy257.github.io/"
+title: "Cy257's Blog"
+languageCode: "zh-cn"
+defaultContentLanguage: "zh"
+theme: "PaperMod"
+pagination:
+  pagerSize: 10
+
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+enableEmoji: true
+
+# Google Analytics (填入你的 ID)
+# googleAnalytics: UA-XXXXXXXX-X
+
+# 搜索（PaperMod 内置 Fuse.js）
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON  # 用于搜索索引
+
+minify:
+  disableXML: true
+  minifyOutput: true
+
+params:
+  # ---------- 基本信息 ----------
+  author: "Cy257"
+  description: "生物信息学 | NGS数据分析 | Python/R 脚本 | 学习笔记"
+  keywords:
+    - bioinformatics
+    - NGS
+    - RNA-seq
+    - ChIP-seq
+    - ATAC-seq
+    - Python
+    - R
+  # 作者信息（底部显示）
+  label:
+    text: "Cy257"
+    icon: /img/avatar.png
+    iconHeight: 35
+
+  # ---------- PaperMod 外观 ----------
+  # home-info 模式（首页显示个人简介）
+  homeInfoParams:
+    Title: "Hi there \U0001F44B"
+    Content: >
+      欢迎来到我的博客！我是 Cy257，一名生物信息学研究者。
+
+      这里记录 NGS 数据分析、脚本工具开发和科研学习中的笔记与心得。
+
+  # 社交图标
+  socialIcons:
+    - name: github
+      url: "https://github.com/Chengy257"
+    - name: email
+      url: "mailto:1067338303@qq.com"
+
+  # ---------- 功能开关 ----------
+  ShowReadingTime: true
+  ShowShareButtons: false
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowWordCount: true
+  ShowRssButtonInSectionTermList: true
+  UseHugoToc: true
+  disableSpecial1stPost: true
+  comments: false
+
+  # ---------- 搜索 ----------
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    keys: ["title", "permalink", "summary", "content"]
+
+  # ---------- 图片 ----------
+  assets:
+    favicon: "/img/favicon.ico"
+    favicon16x16: "/img/favicon.ico"
+    favicon32x32: "/img/favicon.ico"
+
+  # ---------- 暗色模式 ----------
+  defaultTheme: auto
+  # 也可设为 "light" 或 "dark"
+
+  # ---------- 编辑链接（可选） ----------
+  # editPost:
+  #   URL: "https://github.com/Chengy257/chengyu.github.io/blob/source/content"
+  #   Text: "提出修改建议"
+  #   appendFilePath: true
+
+# ---------- 菜单 ----------
+menu:
+  main:
+    - identifier: archives
+      name: "归档"
+      url: /archives/
+      weight: 5
+    - identifier: categories
+      name: "分类"
+      url: /categories/
+      weight: 10
+    - identifier: tags
+      name: "标签"
+      url: /tags/
+      weight: 20
+    - identifier: search
+      name: "搜索"
+      url: /search/
+      weight: 30
+    - identifier: about
+      name: "关于"
+      url: /about/
+      weight: 40
+
+# ---------- 分类法 ----------
+taxonomies:
+  category: categories
+  tag: tags
+  series: series
+
+# ---------- Markdown 渲染 ----------
+markup:
+  goldmark:
+    renderer:
+      unsafe: true  # 允许 HTML 标签
+  highlight:
+    anchorLineNos: true
+    codeFences: true
+    guessSyntax: true
+    lineNos: true
+    noClasses: false
+    style: "monokai"  # 代码高亮主题
+    tabWidth: 4
+
+# ---------- 隐私（可选） ----------
+privacy:
+  vimeo:
+    disabled: false
+    simple: true
+  youtube:
+    disabled: false
+    privacyEnhanced: true
