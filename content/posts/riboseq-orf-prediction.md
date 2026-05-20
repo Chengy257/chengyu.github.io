@@ -16,7 +16,7 @@ TocOpen: false
 
 核糖体 profiling（Ribo-seq）通过捕获正在翻译的核糖体所保护的 mRNA 片段，可以在全基因组范围内揭示翻译事件。除了已知的蛋白编码基因，Ribo-seq 还能发现上游开放阅读框（uORF）、下游开放阅读框（dORF）、长链非编码 RNA 中的翻译事件以及非经典起始密码子介导的翻译。然而，从 Ribo-seq 数据中准确预测活跃翻译的 ORF 并非易事，需要借助专门的生物信息学工具。
 
-本文汇总了目前主流的 Ribo-seq ORF 预测工具，涵盖它们的原理简介、使用方法及 Snakemake 流程集成代码，并附上工具对比表格供读者快速选型。
+本文汇总了目前主流的 Ribo-seq ORF 预测工具，涵盖它们的原理简介、使用方法及 Snakemake 流程集成代码。
 
 > **注意**：本文所有代码块中的 `${}` 均为 Snakemake 模板变量（如 `{input.bam}`、`{wildcards.group}`、`{config[threads]}`），直接嵌入 Snakemake rule 即可运行。Shell 变量转义已使用 `${{var}}` 格式。
 
@@ -33,14 +33,8 @@ TocOpen: false
 | **Price** | Java (GeLi) | Genome | 中等 | 基于图模型的翻译推断，可检测非经典起始密码子 |
 | **Ribotricer** | Python | Genome | 快 | 三帧周期性与读长一致性的严格筛选，输出格式清晰 |
 | **Ribowave** | Shell + R | Genome | 中等 | 利用小波分析去噪，支持移码检测和多 ORF 鉴定 |
-| **RiboTIE** | Python | Genome | 中等 | 基于机器学习（SVM）分类器，整合多特征预测翻译 ORF |
 
-> **选型建议**：
-> - 如果你的 Ribo-seq 数据是**转录本级别比对**（transcriptome-mapped），首选 **RiboCode**。
-> - 如果是**基因组级别比对**且追求速度，**RiboTish** 和 **Ribotricer** 是不错的选择。
-> - 如果需要检测**移码翻译**或复杂翻译事件，推荐 **Ribowave**。
-> - 如果想要**最严格**的过滤结果，可以考虑 **RibORF**（但需要耐心等待）。
-> - 实际项目中建议使用 2-3 种工具取交集，以提高预测可靠性。
+
 
 ---
 
