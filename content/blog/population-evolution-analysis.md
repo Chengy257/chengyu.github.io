@@ -1,7 +1,7 @@
 ---
 title: "群体进化分析：π、Fst、Tajima's D 计算与可视化"
 summary: "使用 vcftools/plink 计算群体遗传多样性指标（π、Fst、Tajima's D），并结合 R 进行基因组区域可视化。"
-date: 2024-06-05
+date: 2025-01-13
 draft: false
 tags: ["群体遗传", "vcftools", "plink", "Tajima's D", "Fst", "π"]
 categories: ["NGS分析"]
@@ -173,7 +173,7 @@ ggplot(dat) +
 
 ### 结果解读示例
 
-以 lncRNA *VIVIpary* 基因组区域（[Yang L, Cheng Y, Yuan C...The long noncoding RNA VIVIpary promotes seed dormancy release and pre-harvest sprouting through chromatin remodeling in rice. Molecular Plant, 2025; 18, 978-994[](https://linkinghub.elsevier.com/retrieve/pii/S1674205225001364)）为例：
+以 lncRNA *VIVIpary* 基因组区域（[Yang L, Cheng Y, Yuan C...The long noncoding RNA VIVIpary promotes seed dormancy release and pre-harvest sprouting through chromatin remodeling in rice. Molecular Plant, 2025; 18, 978-994](https://linkinghub.elsevier.com/retrieve/pii/S1674205225001364)）为例：
 
 图中红色虚线标记目标基因的位置，上方面板展示 Tajima's D 的变化，下方面板展示 π 的分布趋势。通过比较不同亚群体在这些指标上的差异，可以初步判断该区域是否受到选择作用。
 

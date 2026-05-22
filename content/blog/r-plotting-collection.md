@@ -1,7 +1,7 @@
 ---
 title: "R 绘图合集：ggplot2 常用图表代码速查"
 summary: "ggplot2 常用图表的代码模板合集，包括韦恩图、火山图、PCA、热图、柱状图、三元图、StreamGraph 等，即拷即用。"
-date: 2024-06-18
+date: 2024-08-29
 draft: false
 tags: ["R", "ggplot2", "绘图", "数据可视化", "ggsci"]
 categories: ["R绘图"]

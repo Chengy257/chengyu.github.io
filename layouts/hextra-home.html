@@ -1,0 +1,262 @@
+{{ define "main" }}
+{{ $pages := where site.RegularPages "Type" "blog" }}
+{{ $recent := first 6 $pages.ByDate.Reverse }}
+
+<div class="hx:mx-auto hextra-max-page-width">
+  {{ partial "sidebar.html" (dict "context" . "disableSidebar" true) }}
+  <main id="content" class="hx:w-full hx:break-words hx:min-h-[calc(100vh-var(--navbar-height))] hx:min-w-0">
+
+    <!-- ===== HERO ===== -->
+    <section class="cy-hero">
+      <div class="cy-hero-inner">
+        <div class="cy-hero-text">
+          <div class="cy-hero-badge">Bioinformatics &middot; NGS &middot; Open Source</div>
+          <h1 class="cy-hero-title">
+            <span class="cy-gradient">Cy257</span>
+          </h1>
+          <p class="cy-hero-desc">
+            生物信息学分析、流程工具开发与科研进展的个人学习记录。
+          </p>
+          <div class="cy-hero-actions">
+            <a href="{{ "blog" | relURL }}" class="cy-btn cy-btn-primary">浏览文章</a>
+            <a href="https://github.com/Chengy257" target="_blank" rel="noreferrer" class="cy-btn cy-btn-ghost">
+              {{ partial "utils/icon.html" (dict "name" "github" "attributes" "height=18") }}
+              <span>GitHub</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT / CV ===== -->
+    <section class="cy-section">
+      <div class="cy-section-header">
+        <h2 class="cy-section-title">个人简介</h2>
+        <a href="{{ "about" | relURL }}" class="cy-link-more">了解更多 &rarr;</a>
+      </div>
+
+      <!-- 基本信息 -->
+      <div class="cy-about-intro">
+        <div class="cy-about-avatar">
+          {{ partial "utils/icon.html" (dict "name" "user-circle" "attributes" "height=72") }}
+        </div>
+        <div class="cy-about-bio">
+          <h3>程宇</h3>
+          <p class="cy-about-role"> 生物信息学研究工作者 </p>
+          <p> 专注 NGS 多组学数据分析与工具开发，涉及转录组、表观组、蛋白质组等多维度研究。</p>
+        </div>
+      </div>
+
+      <!-- 个人经历 -->
+      <div class="cy-timeline">
+        <h4 class="cy-sub-title">个人经历</h4>
+        <div class="cy-timeline-list">
+          <div class="cy-timeline-item">
+            <span class="cy-timeline-period">2025.7 &ndash; 至今</span>
+            <div class="cy-timeline-body">
+              <p class="cy-timeline-title"> 中山大学 - 生命科学学院 </p>
+              <p class="cy-timeline-desc"> 博士后 </p>
+            </div>
+          </div>
+          <div class="cy-timeline-item">
+            <span class="cy-timeline-period">2020.9 &ndash; 2025.6</span>
+            <div class="cy-timeline-body">
+              <p class="cy-timeline-title"> 中山大学 - 生命科学学院 </p>
+              <p class="cy-timeline-desc"> 博士研究生 </p>
+            </div>
+          </div>
+          <div class="cy-timeline-item">
+            <span class="cy-timeline-period">2016.9 &ndash; 2020.6</span>
+            <div class="cy-timeline-body">
+              <p class="cy-timeline-title"> 深圳大学 - 生命与海洋科学学院 </p>
+              <p class="cy-timeline-desc"> 本科 </p>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+
+      <!-- 研究方向 -->
+      <div class="cy-research">
+        <h4 class="cy-sub-title">研究方向</h4>
+        <div class="cy-card-grid">
+          <div class="cy-area-card">
+            <div class="cy-area-icon">{{ partial "utils/icon.html" (dict "name" "beaker" "attributes" "height=28") }}</div>
+            <h3>转录组分析</h3>
+            <p> Bulk RNA-seq / scRNA-seq / lncRNA、sRNA 等非编码 RNA 组学分析</p>
+          </div>
+          <div class="cy-area-card">
+            <div class="cy-area-icon">{{ partial "utils/icon.html" (dict "name" "chart-bar" "attributes" "height=28") }}</div>
+            <h3>表观组分析</h3>
+            <p>ChIP-seq / CUT&amp;Tag / ATAC-seq / meRIP-seq / HiC 等组学分析</p>
+          </div>
+          <div class="cy-area-card">
+            <div class="cy-area-icon">{{ partial "utils/icon.html" (dict "name" "globe-alt" "attributes" "height=28") }}</div>
+            <h3>基因组学</h3>
+            <p>GWAS、群体进化与比较基因组学</p>
+          </div>
+          <div class="cy-area-card">
+            <div class="cy-area-icon">{{ partial "utils/icon.html" (dict "name" "terminal" "attributes" "height=28") }}</div>
+            <h3>工具开发</h3>
+            <p>Python / R / Bash CLI 工具、Snakemake 流程搭建</p>
+          </div>
+          <div class="cy-area-card">
+            <div class="cy-area-icon">{{ partial "utils/icon.html" (dict "name" "pencil-alt" "attributes" "height=28") }}</div>
+            <h3>数据可视化</h3>
+            <p>ggplot2、matplotlib 科研绘图</p>
+          </div>
+          <div class="cy-area-card">
+            <div class="cy-area-icon">{{ partial "utils/icon.html" (dict "name" "academic-cap" "attributes" "height=28") }}</div>
+            <h3>学习笔记</h3>
+            <p>AIGC、Linux、Git、HPC 等生信基础技能</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 专业技能 -->
+      <div class="cy-skills">
+        <h4 class="cy-sub-title">专业技能</h4>
+        <div class="cy-skill-group">
+          <div class="cy-skill-category">
+            <span class="cy-skill-cat-name">编程语言</span>
+            <div class="cy-skill-tags">
+              <span class="cy-skill">Python</span>
+              <span class="cy-skill">R</span>
+              <span class="cy-skill">Bash</span>
+            </div>
+          </div>
+          <div class="cy-skill-category">
+            <span class="cy-skill-cat-name">生信工具</span>
+            <div class="cy-skill-tags">
+              <span class="cy-skill">STAR</span>
+              <span class="cy-skill">HISAT2</span>
+              <span class="cy-skill">bowtie2</span>
+              <span class="cy-skill">MACS2</span>
+              <span class="cy-skill">featureCounts</span>
+              <span class="cy-skill">StringTie</span>
+            </div>
+          </div>
+          <div class="cy-skill-category">
+            <span class="cy-skill-cat-name">分析框架</span>
+            <div class="cy-skill-tags">
+              <span class="cy-skill">DESeq2</span>
+              <span class="cy-skill">clusterProfiler</span>
+              <span class="cy-skill">ChIPseeker</span>
+              <span class="cy-skill">ggplot2</span>
+              <span class="cy-skill">ComplexHeatmap</span>
+            </div>
+          </div>
+          <div class="cy-skill-category">
+            <span class="cy-skill-cat-name">流程管理</span>
+            <div class="cy-skill-tags">
+              <span class="cy-skill">Snakemake</span>
+              <span class="cy-skill">Conda</span>
+              <span class="cy-skill">Git</span>
+              <span class="cy-skill">HPC</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== RECENT POSTS ===== -->
+    <section class="cy-section">
+      <div class="cy-section-header">
+        <h2 class="cy-section-title">最新文章</h2>
+        <a href="{{ "blog" | relURL }}" class="cy-link-more">查看全部 &rarr;</a>
+      </div>
+      <div class="cy-post-grid">
+        {{ range $recent }}
+        <a href="{{ .RelPermalink }}" class="cy-post-card">
+          <div class="cy-post-card-body">
+            <span class="cy-post-date">{{ .Date.Format "2006-01-02" }}</span>
+            <h3 class="cy-post-title">{{ .Title }}</h3>
+            <p class="cy-post-summary">{{ .Params.summary | default .Description | default "" }}</p>
+          </div>
+          <div class="cy-post-tags">
+            {{ range first 3 .Params.tags }}
+            <span class="cy-tag">{{ . }}</span>
+            {{ end }}
+          </div>
+        </a>
+        {{ end }}
+      </div>
+    </section>
+
+    <!-- ===== GITHUB PROJECTS ===== -->
+    <section class="cy-section">
+      <div class="cy-section-header">
+        <h2 class="cy-section-title">开源项目</h2>
+        <a href="https://github.com/Chengy257?tab=repositories" target="_blank" rel="noreferrer" class="cy-link-more">GitHub &rarr;</a>
+      </div>
+      <div class="cy-card-grid cy-card-grid-2">
+        <div class="cy-repo-card">
+          <div class="cy-repo-header">
+            {{ partial "utils/icon.html" (dict "name" "folder" "attributes" "height=18") }}
+            <span class="cy-repo-name">Chengy257/project-a</span>
+            <span class="cy-repo-visibility">Public</span>
+          </div>
+          <p class="cy-repo-desc">项目描述待填充 &mdash; 可在数据文件中配置</p>
+          <div class="cy-repo-meta">
+            <span class="cy-repo-lang"><span class="cy-dot cy-dot-python"></span>Python</span>
+            <span class="cy-repo-stars">{{ partial "utils/icon.html" (dict "name" "star" "attributes" "height=14") }} 0</span>
+          </div>
+        </div>
+        <div class="cy-repo-card">
+          <div class="cy-repo-header">
+            {{ partial "utils/icon.html" (dict "name" "folder" "attributes" "height=18") }}
+            <span class="cy-repo-name">Chengy257/project-b</span>
+            <span class="cy-repo-visibility">Public</span>
+          </div>
+          <p class="cy-repo-desc">项目描述待填充 &mdash; 可在数据文件中配置</p>
+          <div class="cy-repo-meta">
+            <span class="cy-repo-lang"><span class="cy-dot cy-dot-r"></span>R</span>
+            <span class="cy-repo-stars">{{ partial "utils/icon.html" (dict "name" "star" "attributes" "height=14") }} 0</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PUBLICATIONS ===== -->
+    <section class="cy-section">
+      <div class="cy-section-header">
+        <h2 class="cy-section-title">发表论文</h2>
+      </div>
+      <div class="cy-pub-list">
+        <div class="cy-pub-item">
+          <span class="cy-pub-year">2025</span>
+          <div class="cy-pub-info">
+            <p class="cy-pub-title">论文标题待填充</p>
+            <p class="cy-pub-meta">作者列表 &middot; <em>期刊名</em> &middot; DOI: xx.xxxx/xxxxx</p>
+          </div>
+        </div>
+        <div class="cy-pub-item">
+          <span class="cy-pub-year">2024</span>
+          <div class="cy-pub-info">
+            <p class="cy-pub-title">论文标题待填充</p>
+            <p class="cy-pub-meta">作者列表 &middot; <em>期刊名</em> &middot; DOI: xx.xxxx/xxxxx</p>
+          </div>
+        </div>
+        <div class="cy-pub-empty">
+          <p></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section class="cy-section cy-section-footer">
+      <div class="cy-contact">
+        <a href="https://github.com/Chengy257" target="_blank" rel="noreferrer" class="cy-contact-link">
+          {{ partial "utils/icon.html" (dict "name" "github" "attributes" "height=20") }}
+          <span>GitHub</span>
+        </a>
+        <a href="mailto:1067338303@qq.com" class="cy-contact-link">
+          {{ partial "utils/icon.html" (dict "name" "mail" "attributes" "height=20") }}
+          <span>Email</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+</div>
+{{ end }}
