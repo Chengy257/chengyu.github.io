@@ -1,5 +1,5 @@
 ---
-title: "博客"
-description: "所有博客文章"
+title: "Blog"
+description: "所有文章"
 type: "blog"
 ---

@@ -115,8 +115,12 @@ params:
   editURL:
     enable: false
 
+  search:
+    flexsearch:
+      js: "js/flexsearch.bundle.debug.js"
+
   imageZoom:
-    enable: true
+    enable: false
 
   favicon: "/img/favicon.ico"
 

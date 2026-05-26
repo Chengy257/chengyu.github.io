@@ -10,150 +10,21 @@
     <section class="cy-hero">
       <div class="cy-hero-inner">
         <div class="cy-hero-text">
-          <div class="cy-hero-badge">Bioinformatics &middot; NGS &middot; Open Source</div>
+          <div class="cy-hero-badge" style="margin-left: auto;"> Bioinformatics &nbsp;&nbsp;&middot;&nbsp;&nbsp; NGS &nbsp;&nbsp;&middot;&nbsp;&nbsp; Open Source </div>
           <h1 class="cy-hero-title">
-            <span class="cy-gradient">Cy257</span>
+            <span class="cy-gradient"> Welcome to Cy257's Blog !</span>
           </h1>
           <p class="cy-hero-desc">
-            生物信息学分析、流程工具开发与科研进展的个人学习记录。
+            <br> </br>
+            生物信息学分析流程、工具开发以及科研进展的个人学习记录。
           </p>
+          <hr class="cy-divider">
           <div class="cy-hero-actions">
             <a href="{{ "blog" | relURL }}" class="cy-btn cy-btn-primary">浏览文章</a>
             <a href="https://github.com/Chengy257" target="_blank" rel="noreferrer" class="cy-btn cy-btn-ghost">
               {{ partial "utils/icon.html" (dict "name" "github" "attributes" "height=18") }}
               <span>GitHub</span>
             </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== ABOUT / CV ===== -->
-    <section class="cy-section">
-      <div class="cy-section-header">
-        <h2 class="cy-section-title">个人简介</h2>
-        <a href="{{ "about" | relURL }}" class="cy-link-more">了解更多 &rarr;</a>
-      </div>
-
-      <!-- 基本信息 -->
-      <div class="cy-about-intro">
-        <div class="cy-about-avatar">
-          {{ partial "utils/icon.html" (dict "name" "user-circle" "attributes" "height=72") }}
-        </div>
-        <div class="cy-about-bio">
-          <h3>程宇</h3>
-          <p class="cy-about-role"> 生物信息学研究工作者 </p>
-          <p> 专注 NGS 多组学数据分析与工具开发，涉及转录组、表观组、蛋白质组等多维度研究。</p>
-        </div>
-      </div>
-
-      <!-- 个人经历 -->
-      <div class="cy-timeline">
-        <h4 class="cy-sub-title">个人经历</h4>
-        <div class="cy-timeline-list">
-          <div class="cy-timeline-item">
-            <span class="cy-timeline-period">2025.7 &ndash; 至今</span>
-            <div class="cy-timeline-body">
-              <p class="cy-timeline-title"> 中山大学 - 生命科学学院 </p>
-              <p class="cy-timeline-desc"> 博士后 </p>
-            </div>
-          </div>
-          <div class="cy-timeline-item">
-            <span class="cy-timeline-period">2020.9 &ndash; 2025.6</span>
-            <div class="cy-timeline-body">
-              <p class="cy-timeline-title"> 中山大学 - 生命科学学院 </p>
-              <p class="cy-timeline-desc"> 博士研究生 </p>
-            </div>
-          </div>
-          <div class="cy-timeline-item">
-            <span class="cy-timeline-period">2016.9 &ndash; 2020.6</span>
-            <div class="cy-timeline-body">
-              <p class="cy-timeline-title"> 深圳大学 - 生命与海洋科学学院 </p>
-              <p class="cy-timeline-desc"> 本科 </p>
-            </div>
-          </div>
-        </div>
-        
-      </div>
-
-      <!-- 研究方向 -->
-      <div class="cy-research">
-        <h4 class="cy-sub-title">研究方向</h4>
-        <div class="cy-card-grid">
-          <div class="cy-area-card">
-            <div class="cy-area-icon">{{ partial "utils/icon.html" (dict "name" "beaker" "attributes" "height=28") }}</div>
-            <h3>转录组分析</h3>
-            <p> Bulk RNA-seq / scRNA-seq / lncRNA、sRNA 等非编码 RNA 组学分析</p>
-          </div>
-          <div class="cy-area-card">
-            <div class="cy-area-icon">{{ partial "utils/icon.html" (dict "name" "chart-bar" "attributes" "height=28") }}</div>
-            <h3>表观组分析</h3>
-            <p>ChIP-seq / CUT&amp;Tag / ATAC-seq / meRIP-seq / HiC 等组学分析</p>
-          </div>
-          <div class="cy-area-card">
-            <div class="cy-area-icon">{{ partial "utils/icon.html" (dict "name" "globe-alt" "attributes" "height=28") }}</div>
-            <h3>基因组学</h3>
-            <p>GWAS、群体进化与比较基因组学</p>
-          </div>
-          <div class="cy-area-card">
-            <div class="cy-area-icon">{{ partial "utils/icon.html" (dict "name" "terminal" "attributes" "height=28") }}</div>
-            <h3>工具开发</h3>
-            <p>Python / R / Bash CLI 工具、Snakemake 流程搭建</p>
-          </div>
-          <div class="cy-area-card">
-            <div class="cy-area-icon">{{ partial "utils/icon.html" (dict "name" "pencil-alt" "attributes" "height=28") }}</div>
-            <h3>数据可视化</h3>
-            <p>ggplot2、matplotlib 科研绘图</p>
-          </div>
-          <div class="cy-area-card">
-            <div class="cy-area-icon">{{ partial "utils/icon.html" (dict "name" "academic-cap" "attributes" "height=28") }}</div>
-            <h3>学习笔记</h3>
-            <p>AIGC、Linux、Git、HPC 等生信基础技能</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- 专业技能 -->
-      <div class="cy-skills">
-        <h4 class="cy-sub-title">专业技能</h4>
-        <div class="cy-skill-group">
-          <div class="cy-skill-category">
-            <span class="cy-skill-cat-name">编程语言</span>
-            <div class="cy-skill-tags">
-              <span class="cy-skill">Python</span>
-              <span class="cy-skill">R</span>
-              <span class="cy-skill">Bash</span>
-            </div>
-          </div>
-          <div class="cy-skill-category">
-            <span class="cy-skill-cat-name">生信工具</span>
-            <div class="cy-skill-tags">
-              <span class="cy-skill">STAR</span>
-              <span class="cy-skill">HISAT2</span>
-              <span class="cy-skill">bowtie2</span>
-              <span class="cy-skill">MACS2</span>
-              <span class="cy-skill">featureCounts</span>
-              <span class="cy-skill">StringTie</span>
-            </div>
-          </div>
-          <div class="cy-skill-category">
-            <span class="cy-skill-cat-name">分析框架</span>
-            <div class="cy-skill-tags">
-              <span class="cy-skill">DESeq2</span>
-              <span class="cy-skill">clusterProfiler</span>
-              <span class="cy-skill">ChIPseeker</span>
-              <span class="cy-skill">ggplot2</span>
-              <span class="cy-skill">ComplexHeatmap</span>
-            </div>
-          </div>
-          <div class="cy-skill-category">
-            <span class="cy-skill-cat-name">流程管理</span>
-            <div class="cy-skill-tags">
-              <span class="cy-skill">Snakemake</span>
-              <span class="cy-skill">Conda</span>
-              <span class="cy-skill">Git</span>
-              <span class="cy-skill">HPC</span>
-            </div>
           </div>
         </div>
       </div>
@@ -190,28 +61,141 @@
         <a href="https://github.com/Chengy257?tab=repositories" target="_blank" rel="noreferrer" class="cy-link-more">GitHub &rarr;</a>
       </div>
       <div class="cy-card-grid cy-card-grid-2">
-        <div class="cy-repo-card">
+        <a href="https://github.com/Chengy257/RiceNoncanonicalORFome.github.io" target="_blank" rel="noreferrer" class="cy-repo-card cy-repo-link">
           <div class="cy-repo-header">
             {{ partial "utils/icon.html" (dict "name" "folder" "attributes" "height=18") }}
-            <span class="cy-repo-name">Chengy257/project-a</span>
+            <span class="cy-repo-name">RiceNoncanonicalORFome</span>
             <span class="cy-repo-visibility">Public</span>
           </div>
-          <p class="cy-repo-desc">项目描述待填充 &mdash; 可在数据文件中配置</p>
+          <p class="cy-repo-desc">水稻非经典 ORF 组学数据库：整合 lncRNA 来源微肽 (micropeptide) 的注释、表达与功能信息，支持在线浏览与检索。</p>
+          <div class="cy-repo-meta">
+            <span class="cy-repo-lang"><span class="cy-dot cy-dot-html"></span>HTML/CSS/JS</span>
+            <span class="cy-repo-stars">{{ partial "utils/icon.html" (dict "name" "star" "attributes" "height=14") }} 0</span>
+          </div>
+        </a>
+        <a href="https://github.com/Chengy257/rice_lncORF_xgboost_classifier" target="_blank" rel="noreferrer" class="cy-repo-card cy-repo-link">
+          <div class="cy-repo-header">
+            {{ partial "utils/icon.html" (dict "name" "folder" "attributes" "height=18") }}
+            <span class="cy-repo-name">rice_lncORF_xgboost_classifier</span>
+            <span class="cy-repo-visibility">Public</span>
+          </div>
+          <p class="cy-repo-desc">基于 XGBoost 的水稻 lncRNA 编码能力预测分类器，用于鉴别具有翻译潜力的非经典小肽编码 ORF。</p>
           <div class="cy-repo-meta">
             <span class="cy-repo-lang"><span class="cy-dot cy-dot-python"></span>Python</span>
             <span class="cy-repo-stars">{{ partial "utils/icon.html" (dict "name" "star" "attributes" "height=14") }} 0</span>
           </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT / CV ===== -->
+    <section class="cy-section">
+      <div class="cy-section-header">
+        <h2 class="cy-section-title">个人简介</h2>
+        <a href="{{ "about" | relURL }}" class="cy-link-more">个人简历 &rarr;</a>
+      </div>
+
+      <!-- 基本信息 -->
+      <div class="cy-about-intro">
+        <div class="cy-about-avatar">
+          {{ partial "utils/icon.html" (dict "name" "user-circle" "attributes" "height=60") }}
         </div>
-        <div class="cy-repo-card">
-          <div class="cy-repo-header">
-            {{ partial "utils/icon.html" (dict "name" "folder" "attributes" "height=18") }}
-            <span class="cy-repo-name">Chengy257/project-b</span>
-            <span class="cy-repo-visibility">Public</span>
+        <div class="cy-about-bio">
+          <h3>程 &nbsp; 宇</h3>
+          <p class="cy-about-role"> 生物信息学研究工作者，NGS数据分析与流程工具开发 </p>
+        </div>
+      </div>
+
+      <!-- 个人经历 -->
+      <div class="cy-timeline">
+        <h4 class="cy-sub-title">个人经历</h4>
+        <div class="cy-timeline-list">
+          <div class="cy-timeline-item">
+            <span class="cy-timeline-period">2025.7 &ndash; 至今</span>
+            <div class="cy-timeline-body">
+              <p class="cy-timeline-title"> 博士后 </p>
+              <p class="cy-timeline-desc"> 中山大学 - 生命科学学院 </p>
+            </div>
           </div>
-          <p class="cy-repo-desc">项目描述待填充 &mdash; 可在数据文件中配置</p>
-          <div class="cy-repo-meta">
-            <span class="cy-repo-lang"><span class="cy-dot cy-dot-r"></span>R</span>
-            <span class="cy-repo-stars">{{ partial "utils/icon.html" (dict "name" "star" "attributes" "height=14") }} 0</span>
+          <div class="cy-timeline-item">
+            <span class="cy-timeline-period">2020 &ndash; 2025</span>
+            <div class="cy-timeline-body">
+              <p class="cy-timeline-title"> 博士学位（生物学） </p>
+              <p class="cy-timeline-desc"> 中山大学 - 生命科学学院 </p>
+            </div>
+          </div>
+          <div class="cy-timeline-item">
+            <span class="cy-timeline-period">2016 &ndash; 2020</span>
+            <div class="cy-timeline-body">
+              <p class="cy-timeline-title"> 学士学位（生物技术）</p>
+              <p class="cy-timeline-desc"> 深圳大学 - 生命与海洋科学学院 </p>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+
+      <!-- 专业技能 -->
+      <div class="cy-research">
+        <h4 class="cy-sub-title">专业技能</h4>
+        <div class="cy-card-grid">
+          <div class="cy-area-card">
+            <div class="cy-area-icon">{{ partial "utils/icon.html" (dict "name" "beaker" "attributes" "height=28") }}</div>
+            <h3>转录组分析</h3>
+            <p> Bulk/Single cell RNA-seq 分析, lncRNA、sRNA 等非编码 RNA 鉴定、表达与功能分析。</p>
+          </div>
+          <div class="cy-area-card">
+            <div class="cy-area-icon">{{ partial "utils/icon.html" (dict "name" "chart-bar" "attributes" "height=28") }}</div>
+            <h3>翻译组分析</h3>
+            <p>Ribo-seq、蛋白质组学数据分析及非经典翻译 ORF 的鉴定与功能分析</p>
+          </div>
+          <div class="cy-area-card">
+            <div class="cy-area-icon">{{ partial "utils/icon.html" (dict "name" "globe-alt" "attributes" "height=28") }}</div>
+            <h3>表观组分析</h3>
+            <p>ChIP-seq/Cut&amp;Tag/ATAC-seq/HiC 组学分析。</p>
+          </div>
+          <div class="cy-area-card">
+            <div class="cy-area-icon">{{ partial "utils/icon.html" (dict "name" "terminal" "attributes" "height=28") }}</div>
+            <h3>基因组分析</h3>
+            <p>GWAS, 群体进化与比较基因组学分析。</p>
+          </div>
+          <div class="cy-area-card">
+            <div class="cy-area-icon">{{ partial "utils/icon.html" (dict "name" "pencil-alt" "attributes" "height=28") }}</div>
+            <h3>数据可视化&工具开发</h3>
+            <p>R ggplot2, Python 科研绘图; Python/R/Bash CLI 工具, Snakemake 流程搭建。</p>
+          </div>
+          <div class="cy-area-card">
+            <div class="cy-area-icon">{{ partial "utils/icon.html" (dict "name" "academic-cap" "attributes" "height=28") }}</div>
+            <h3>基础技能</h3>
+            <p>Agentic Coding/AI 辅助编程开发, Linux HPC 服务器管理使用等。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 研究兴趣/方向 -->
+      <div class="cy-skills">
+        <h4 class="cy-sub-title">研究兴趣方向</h4>
+        <div class="cy-research-card">
+          <div class="cy-research-item">
+            <span class="cy-research-num">1</span>
+            <div class="cy-research-body">
+              <span class="cy-research-name">植物非编码 RNA 功能相关的生物信息学分析</span>
+              <p class="cy-research-desc">关注植物非编码 RNA 的表达特征、序列保守性、分子互作关系及其潜在功能机制解析。</p>
+            </div>
+          </div>
+          <div class="cy-research-item">
+            <span class="cy-research-num">2</span>
+            <div class="cy-research-body">
+              <span class="cy-research-name">非经典翻译及编码微肽的鉴定与功能分析</span>
+              <p class="cy-research-desc">主要围绕非经典翻译事件识别、微肽编码潜能评估、功能注释及其生物学意义开展分析研究。</p>
+            </div>
+          </div>
+          <div class="cy-research-item">
+            <span class="cy-research-num">3</span>
+            <div class="cy-research-body">
+              <span class="cy-research-name">生物信息学分析流程、工具与数据库开发</span>
+              <p class="cy-research-desc">致力于开发高效、可复用的生物信息学分析流程、计算工具和数据资源平台，以支持多组学数据整合分析与功能挖掘。</p>
+            </div>
           </div>
         </div>
       </div>
@@ -222,25 +206,42 @@
       <div class="cy-section-header">
         <h2 class="cy-section-title">发表论文</h2>
       </div>
+
       <div class="cy-pub-list">
         <div class="cy-pub-item">
-          <span class="cy-pub-year">2025</span>
+          <span class="cy-pub-num">1</span>
           <div class="cy-pub-info">
-            <p class="cy-pub-title">论文标题待填充</p>
-            <p class="cy-pub-meta">作者列表 &middot; <em>期刊名</em> &middot; DOI: xx.xxxx/xxxxx</p>
+            <p class="cy-pub-title"><a href="https://linkinghub.elsevier.com/retrieve/pii/S153458072600033X" target="_blank" rel="noreferrer">Noncanonical open reading frames from lncRNAs encode functional micropeptides that help shape agronomic traits in rice</a></p>
+            <p class="cy-pub-meta"><u class="thick-underline">Cheng, Yu</u><sup>#</sup>; He, Rui-Rui<sup>#</sup>; Jiang, Jie; Yang, Lu; Yuan, Chao; Qin, Yi-Chao; Zhao, Wen-Long; Mo, Wan-Ting; Liao, Yu-Hong; Chen, Zheng-Tong; Feng, Jun-Jie; Pang, Hui-Yin; Cheng, Ye; Lei, Meng-Qi; Zhou, Yan-Fei; Lian, Jian-Ping; Zhang, Yu-Chan; Chen, Yue-Qin<sup>*</sup></p>
+            <p class="cy-pub-journal"><em>Developmental Cell</em>. 2026; 61(4), 919-935.e6</p>
           </div>
         </div>
         <div class="cy-pub-item">
-          <span class="cy-pub-year">2024</span>
+          <span class="cy-pub-num">2</span>
           <div class="cy-pub-info">
-            <p class="cy-pub-title">论文标题待填充</p>
-            <p class="cy-pub-meta">作者列表 &middot; <em>期刊名</em> &middot; DOI: xx.xxxx/xxxxx</p>
+            <p class="cy-pub-title"><a href="https://linkinghub.elsevier.com/retrieve/pii/S1674205225001364" target="_blank" rel="noreferrer">The long noncoding RNA VIVIpary promotes seed dormancy release and pre-harvest sprouting through chromatin remodeling in rice</a></p>
+            <p class="cy-pub-meta">Yang, Lu<sup>#</sup>; <u class="thick-underline">Cheng, Yu</u><sup>#</sup>; Yuan, Chao; Zhou, Yan-Fei; Huang, Qiao-Juan; Zhao, Wen-Long; He, Rui-Rui; Jiang, Jie; Qin, Yi-Chao; Chen, Zheng-Tong; Zhang, Yu-Chan; Lei, Meng-Qi<sup>*</sup>; Lian, Jian-Ping<sup>*</sup>; Chen, Yue-Qin<sup>*</sup></p>
+            <p class="cy-pub-journal"><em>Molecular Plant</em>. 2025; 18(6), 978-994</p>
           </div>
         </div>
-        <div class="cy-pub-empty">
-          <p></p>
+        <div class="cy-pub-item">
+          <span class="cy-pub-num">3</span>
+          <div class="cy-pub-info">
+            <p class="cy-pub-title"><a href="https://linkinghub.elsevier.com/retrieve/pii/S1674205225003120" target="_blank" rel="noreferrer">Long noncoding RNAs as molecular architects: Shaping plant functions and physiological plasticity</a></p>
+            <p class="cy-pub-meta">Zhang, Yu-Chan<sup>#</sup>; He, Re-Qing<sup>#</sup>; <u class="thick-underline">Cheng, Yu</u><sup>#</sup>; Wang, Dong<sup>*</sup>; Ariel, Federico<sup>*</sup>; Chen, Yue-Qin<sup>*</sup></p>
+            <p class="cy-pub-journal"><em>Molecular Plant</em>. 2025; 18(10), 1643-1671</p>
+          </div>
+        </div>
+        <div class="cy-pub-item">
+          <span class="cy-pub-num">4</span>
+          <div class="cy-pub-info">
+            <p class="cy-pub-title"><a href="https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02608-y" target="_blank" rel="noreferrer">Genome-wide analysis and functional annotation of chromatin-enriched noncoding RNAs in rice during somatic cell regeneration</a></p>
+            <p class="cy-pub-meta">Zhang, Yu-Chan<sup>#</sup>; Zhou, Yan-Fei<sup>#</sup>; <u class="thick-underline">Cheng, Yu</u><sup>#</sup>; Huang, Jia-Hui; Lian, Jian-Ping; Yang, Lu; He, Rui-Rui; Lei, Meng-Qi; Liu, Yu-Wei; Yuan, Chao; Zhao, Wen-Long; Xiao, Shi; Chen, Yue-Qin<sup>*</sup></p>
+            <p class="cy-pub-journal"><em>Genome Biology</em>. 2022; 23(1), 28</p>
+          </div>
         </div>
       </div>
+      <p style="font-size: 0.82rem; color: var(--cy-text-secondary); margin-top: 0.75rem;">(# co-first author, * corresponding author)</p>
     </section>
 
     <!-- ===== CONTACT ===== -->
