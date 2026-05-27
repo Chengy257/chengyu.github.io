@@ -1,0 +1,77 @@
+{{ define "main" }}
+  {{- $pages := partial "utils/sort-pages" (dict "page" . "by" site.Params.blog.list.sortBy "order" site.Params.blog.list.sortOrder) -}}
+  {{- $pagerSize := site.Params.blog.list.pagerSize | default 20 -}}
+  {{- $paginator := .Paginate $pages $pagerSize -}}
+  {{- $yearGroups := $paginator.Pages.GroupByDate "2006" -}}
+
+  <div class="hx:mx-auto hx:flex hextra-max-page-width">
+    {{ partial "sidebar.html" (dict "context" . "disableSidebar" true) }}
+
+    <main id="content" class="hx:w-full hx:break-words hx:min-h-[calc(100vh-var(--navbar-height))] hx:min-w-0">
+      <div class="cy-blog-layout">
+
+        <!-- Left: year nav (sticky) -->
+        <aside class="cy-blog-nav">
+          <div class="cy-blog-nav-inner">
+            <div class="cy-blog-nav-title">Blog</div>
+            <a href='{{ "/" | relURL }}' class="cy-blog-nav-home">&larr; 首页</a>
+            <hr class="cy-blog-nav-divider">
+            <div class="cy-blog-nav-label">按年份</div>
+            {{ range $yearGroups }}
+            <a href="#year-{{ .Key }}" class="cy-blog-nav-link">{{ .Key }} ({{ len .Pages }})</a>
+            {{ end }}
+            <hr class="cy-blog-nav-divider">
+            <div class="cy-blog-nav-label">共 {{ len $paginator.Pages }} 篇</div>
+          </div>
+        </aside>
+
+        <!-- Right: post list -->
+        <div class="cy-blog-main">
+
+          {{ range $yearGroups }}
+          <section class="cy-blog-year" id="year-{{ .Key }}">
+            <h2 class="cy-blog-year-title">{{ .Key }}</h2>
+            {{ range .Pages }}
+            <a href="{{ .RelPermalink }}" class="cy-blog-item">
+              <div class="cy-blog-item-left">
+                <span class="cy-blog-item-date">{{ .Date.Format "01-02" }}</span>
+              </div>
+              <div class="cy-blog-item-right">
+                <h3 class="cy-blog-item-title">{{ .Title }}</h3>
+                {{ if .Params.summary }}<p class="cy-blog-item-summary">{{ .Params.summary }}</p>{{ end }}
+                {{ if .Params.tags }}
+                <div class="cy-post-tags">
+                  {{ range first 3 .Params.tags }}
+                  <span class="cy-tag">{{ . }}</span>
+                  {{ end }}
+                </div>
+                {{ end }}
+              </div>
+            </a>
+            {{ end }}
+          </section>
+          {{ end }}
+
+          <!-- Pagination -->
+          {{- if gt $paginator.TotalPages 1 -}}
+          <div class="cy-blog-pager">
+            {{- if $paginator.HasPrev -}}
+            <a href="{{ $paginator.Prev.URL }}" class="cy-pager-btn">
+              {{ partial "utils/icon.html" (dict "name" "chevron-right" "attributes" "class=\"hx:inline hx:h-4 hx:shrink-0 hx:ltr:rotate-180\"") }}
+              <span>Prev {{ sub $paginator.PageNumber 1 }}/{{ $paginator.TotalPages }}</span>
+            </a>
+            {{- end -}}
+            {{- if $paginator.HasNext -}}
+            <a href="{{ $paginator.Next.URL }}" class="cy-pager-btn cy-pager-next">
+              <span>Next {{ add $paginator.PageNumber 1 }}/{{ $paginator.TotalPages }}</span>
+              {{ partial "utils/icon.html" (dict "name" "chevron-right" "attributes" "class=\"hx:inline hx:h-4 hx:shrink-0 hx:rtl:-rotate-180\"") }}
+            </a>
+            {{- end -}}
+          </div>
+          {{- end -}}
+
+        </div>
+      </div>
+    </main>
+  </div>
+{{- end -}}

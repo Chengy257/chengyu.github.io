@@ -3,6 +3,7 @@
 /resources/_gen/
 /assets/jsconfig.json
 hugo_stats.json
+hermes_remsume.txt
 
 # OS
 .DS_Store
