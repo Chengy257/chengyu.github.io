@@ -1,7 +1,7 @@
 ---
 title: "cv-a4-generator：从 Markdown 生成 A4 打印简历"
 summary: "一个纯 Python 工具，只需一个 Markdown 文件和一张照片，即可生成排版精美的 A4 双页个人简历 HTML。无需 Hugo、Node.js 或任何站点构建工具。"
-date: 2025-07-28
+date: 2026-05-27
 draft: false
 tags: ["Python", "工具开发", "简历", "开源"]
 categories: ["工具开发"]
