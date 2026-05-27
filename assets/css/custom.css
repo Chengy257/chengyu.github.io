@@ -1,6 +1,32 @@
 /* ===================================================================
-   Cy257 Blog — Custom Homepage Styles
+   Cy257 Blog — Custom Styles (Homepage + Blog Article)
    =================================================================== */
+
+/* ---------- Wider content area for blog articles ----------
+   Hextra default: --hextra-max-content-width is set in variables.css
+   by Hugo template. The blog/single.html template uses
+   hextra-max-content-width which limits content to ~72rem.
+   We override it wider via custom class in our layouts/blog/single.html.
+*/
+
+/* Blog article content: wider than default */
+.cy-blog-article-content {
+  max-width: 72rem !important;
+}
+
+@media (min-width: 1280px) {
+  .cy-blog-article-content {
+    max-width: 82rem !important;
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+  }
+}
+
+@media (min-width: 1536px) {
+  .cy-blog-article-content {
+    max-width: 90rem !important;
+  }
+}
 
 /* ---------- Variables ---------- */
 :root {
@@ -963,4 +989,151 @@ a.cy-repo-link:hover {
 
 .cy-pager-next {
   margin-left: auto;
+}
+
+/* ===================================================================
+   Blog Article Page — Visual Enhancements
+   Unified with homepage green accent theme
+   =================================================================== */
+
+/* --- Article header --- */
+article main#content h1 {
+  font-weight: 800 !important;
+  letter-spacing: -0.02em;
+}
+
+/* --- Section headings with green accent --- */
+.content h2 {
+  border-bottom: 2px solid var(--cy-accent) !important;
+  padding-bottom: 0.4rem !important;
+  margin-top: 2.5rem !important;
+  margin-bottom: 1rem !important;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.content h3 {
+  margin-top: 1.8rem !important;
+  margin-bottom: 0.75rem !important;
+  font-weight: 600;
+  color: var(--cy-accent) !important;
+}
+
+.content h4 {
+  font-weight: 600;
+}
+
+/* --- Links with accent color --- */
+.content a {
+  color: var(--cy-accent);
+  text-decoration: underline;
+  text-decoration-color: rgba(26, 92, 63, 0.3);
+  text-underline-offset: 2px;
+  transition: all 0.15s ease;
+}
+
+.content a:hover {
+  color: var(--cy-accent-light);
+  text-decoration-color: var(--cy-accent);
+}
+
+/* --- Code blocks --- */
+.content pre {
+  border: 1px solid var(--cy-border) !important;
+  border-radius: 10px !important;
+  margin: 1.25rem 0 !important;
+}
+
+.content :not(pre) > code {
+  background: var(--cy-accent-bg) !important;
+  color: var(--cy-accent) !important;
+  border: 1px solid rgba(26, 92, 63, 0.15) !important;
+  border-radius: 5px !important;
+  padding: 0.15rem 0.4rem !important;
+  font-size: 0.88em !important;
+}
+
+/* --- Blockquotes --- */
+.content blockquote {
+  border-left: 4px solid var(--cy-accent) !important;
+  background: var(--cy-accent-bg) !important;
+  border-radius: 0 8px 8px 0 !important;
+  padding: 0.75rem 1.25rem !important;
+  margin: 1.25rem 0 !important;
+}
+
+.content blockquote p {
+  margin: 0 !important;
+}
+
+/* --- Tables --- */
+.content table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.25rem 0;
+}
+
+.content table th {
+  background: var(--cy-accent-bg);
+  color: var(--cy-text);
+  font-weight: 600;
+  padding: 0.6rem 0.9rem;
+  border-bottom: 2px solid var(--cy-accent);
+  text-align: left;
+}
+
+.content table td {
+  padding: 0.5rem 0.9rem;
+  border-bottom: 1px solid var(--cy-border);
+}
+
+.content table tr:hover td {
+  background: var(--cy-accent-bg);
+}
+
+/* --- Lists --- */
+.content ul li::marker {
+  color: var(--cy-accent);
+}
+
+.content ol li::marker {
+  color: var(--cy-accent);
+  font-weight: 600;
+}
+
+/* --- Horizontal rule --- */
+.content hr {
+  border: none !important;
+  height: 1px !important;
+  background: linear-gradient(to right, transparent, var(--cy-accent), transparent) !important;
+  margin: 2rem 0 !important;
+}
+
+/* --- Article date/meta bar --- */
+article main#content > div:first-of-type {
+  color: var(--cy-accent) !important;
+  font-weight: 500;
+}
+
+/* --- Inline tags on article page --- */
+.hextra-tags .hextra-tag {
+  background: var(--cy-accent-bg) !important;
+  color: var(--cy-accent) !important;
+  border: 1px solid var(--cy-accent) !important;
+  border-radius: 9999px !important;
+}
+
+/* --- Dark mode adjustments --- */
+.dark .content h3 {
+  color: var(--cy-accent-light) !important;
+}
+
+.dark .content a {
+  color: #5bb89a;
+  text-decoration-color: rgba(91, 184, 154, 0.3);
+}
+
+.dark .content a:hover {
+  color: #7ccfb5;
+  text-decoration-color: #5bb89a;
 }

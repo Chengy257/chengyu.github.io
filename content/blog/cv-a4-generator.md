@@ -12,11 +12,7 @@ TocOpen: false
 
 ## 背景
 
-之前我在做个人主页时，用 Hugo + Hextra 搭建了一个在线简历页面。但当需要打印或导出 PDF 时，流程很繁琐：Hugo 构建 → 从生成的 HTML 中提取内容 → 清理框架注入的标签 → 嵌入照片 → 包装 A4 CSS → 输出。
-
-整个流程强依赖 Hugo 和完整的站点目录，只为生成一个 HTML 文件，太重了。
-
-于是我把这个生成逻辑剥离出来，做了一个独立工具：**cv-a4-generator**。
+在做个人主页时，用 Hugo + Hextra 搭建了一个在线简历页面。但当需要打印或导出 PDF 时，流程很繁琐：Hugo 构建 → 从生成的 HTML 中提取内容 → 清理框架注入的标签 → 嵌入照片 → 包装 A4 CSS → 输出，整个流程依赖 Hugo 和完整的站点目录。因此将这个生成逻辑剥离，做了一个独立工具：**cv-a4-generator**。
 
 <!--more-->
 
@@ -40,6 +36,7 @@ python generate.py cv.md photo.jpg -o resume.html
 ### 只有一个外部依赖
 
 ```bash
+# python >= 3.10
 pip install markdown
 ```
 
