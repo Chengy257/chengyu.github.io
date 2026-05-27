@@ -131,5 +131,3 @@ go_enrich <- enrichGO(
 | 定量 | featureCounts | 计数矩阵 |
 | 差异分析 | DESeq2 | DEG 列表 |
 | 富集分析 | clusterProfiler | GO/KEGG 结果 |
-
-> 💡 完整的 Snakemake 流程模板可在我的 [GitHub](https://github.com/Chengy257) 找到。

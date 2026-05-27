@@ -1,18 +1,18 @@
 ---
-title: "Python 命令行脚本编写规范（argparse 完整模板）"
-summary: "分享一个生产级 Python CLI 脚本的完整模板，涵盖 argparse、logging、错误处理和并行处理。"
+title: "Python 命令行脚本编写规范（argparse 模板）"
+summary: "Python CLI 脚本模板，涵盖 argparse、logging、错误处理和并行处理。"
 date: 2024-08-20
 draft: false
-tags: ["Python", "argparse", "CLI", "最佳实践"]
+tags: ["Python", "argparse", "CLI"]
 categories: ["工具开发"]
 author: "Cy257"
 showToc: true
 TocOpen: false
 ---
 
-## 为什么需要脚本规范？
+## 脚本规范
 
-在生物信息学分析中，脚本是最常用的工具。一个规范的 CLI 脚本应该具备：
+一个规范的 CLI 脚本应该具备：
 
 - 清晰的帮助信息
 - 完善的参数校验

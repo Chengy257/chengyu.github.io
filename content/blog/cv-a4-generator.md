@@ -12,16 +12,26 @@ TocOpen: false
 
 ## 背景
 
-在做个人主页时，用 Hugo + Hextra 搭建了一个在线简历页面。但当需要打印或导出 PDF 时，流程很繁琐：Hugo 构建 → 从生成的 HTML 中提取内容 → 清理框架注入的标签 → 嵌入照片 → 包装 A4 CSS → 输出，整个流程依赖 Hugo 和完整的站点目录。因此将这个生成逻辑剥离，做了一个独立工具：**cv-a4-generator**。
+在做个人主页时，用 Hugo + Hextra 搭建在线简历页面，但是当需要打印或导出 PDF 时，流程繁琐：Hugo 构建 → 从生成的 HTML 中提取内容 → 清理框架注入的标签 → 嵌入照片 → 包装 A4 CSS → 输出，整个流程依赖 Hugo 和完整的站点目录。
+
+因此将这个生成逻辑剥离成独立工具：**cv-a4-generator**，方便一键生成独立 HTML，可直接导出保存为 PDF 文件。
 
 <!--more-->
 
 ## 它能做什么
 
-给定一个 Markdown 文件和一张照片，一行命令生成自包含的 A4 简历 HTML：
+给定一个 Markdown 文件和一张个人照片，一行命令生成自包含的 A4 简历 HTML：
 
 ```bash
-python generate.py cv.md photo.jpg -o resume.html
+# Installation and Usage
+
+git clone https://github.com/Chengy257/cv-a4-generator.git
+cd cv-a4-generator
+
+# Copy test/test_cv.md and replace the example content with your own information.
+
+# Generate your resume with a single command:
+python generate.py your_cv.md your_photo.jpg -o resume.html
 ```
 
 输出效果：
@@ -67,11 +77,11 @@ intro: 第一段简介。 | 第二段简介。 | 第三段简介。
 | `{{ body_html }}` | Markdown 渲染内容 |
 | `{{ header_name }}` | 头部姓名 |
 
-不依赖 Jinja2，用 Python 字符串替换即可。
+用 Python 字符串替换即可。
 
 ### 论文连续编号
 
-关键技巧：CSS counter。不管论文按多少个年份 `<h3>` 分组，`<ol>` 被 Hugo/Hextra 的 markdown 渲染器在每个 `###` 后重置，但 CSS counter 在 `.cv-page` 层面 `counter-reset`，每个 `<li>` 自动递增，实现跨年份连续编号 1-9：
+CSS counter：不管论文按多少个年份 `<h3>` 分组，`<ol>` 被 Hugo/Hextra 的 markdown 渲染器在每个 `###` 后重置，但 CSS counter 在 `.cv-page` 层面 `counter-reset`，每个 `<li>` 自动递增，实现跨年份连续编号 1-9：
 
 ```css
 .cv-page { counter-reset: pub-counter; }
@@ -105,10 +115,10 @@ body { font-size: 9.5pt; line-height: 1.55; width: 210mm; }
 
 ```
 cv-a4-generator/
-├── generate.py          # 主脚本 (~170 行)
+├── generate.py          # 主脚本 
 ├── template.html        # A4 HTML 模板 (CSS 全内嵌)
 ├── requirements.txt     # markdown>=3.5
-├── README.md            # 英文主文档 + 中文折叠说明
+├── README.md            # 主文档说明
 └── test/
     └── test_cv.md       # 测试用 Markdown
 ```

@@ -16,9 +16,9 @@ TocOpen: false
 
 核糖体 profiling（Ribo-seq）通过捕获正在翻译的核糖体所保护的 mRNA 片段，可以在全基因组范围内揭示翻译事件。除了已知的蛋白编码基因，Ribo-seq 还能发现上游开放阅读框（uORF）、下游开放阅读框（dORF）、长链非编码 RNA 中的翻译事件以及非经典起始密码子介导的翻译。然而，从 Ribo-seq 数据中准确预测活跃翻译的 ORF 并非易事，需要借助专门的生物信息学工具。
 
-本文汇总了目前主流的 Ribo-seq ORF 预测工具，涵盖它们的原理简介、使用方法及 Snakemake 流程集成代码。
+本文汇总了主流的 Ribo-seq ORF 预测工具，涵盖它们的原理简介、使用方法及 Snakemake 流程集成代码。
 
-> **注意**：本文所有代码块中的 `${}` 均为 Snakemake 模板变量（如 `{input.bam}`、`{wildcards.group}`、`{config[threads]}`），直接嵌入 Snakemake rule 即可运行。Shell 变量转义已使用 `${{var}}` 格式。
+> **Note**：本文所有代码块中的 `${}` 均为 Snakemake 模板变量（如 `{input.bam}`、`{wildcards.group}`、`{config[threads]}`），直接嵌入 Snakemake rule 即可运行。Shell 变量转义已使用 `${{var}}` 格式。
 
 ---
 
@@ -27,12 +27,12 @@ TocOpen: false
 | 工具 | 语言 | 输入 BAM 类型 | 速度 | 特点 |
 |------|------|---------------|------|------|
 | **Ribotaper** | Shell + R | Genome | 慢 | 基于三框读取框分布的多重检验，经典方法 |
-| **RibORF** | Perl | Genome | 很慢 | 基于读取框一致性和读取密度双检验，严格但计算量大 |
+| **RibORF** | Perl | Genome | 慢 | 基于读取框一致性和读取密度双检验，严格但计算量大 |
 | **RiboCode** | Python | **Transcriptome** | 中等 | 基于转录本坐标的三框周期性检验，需要转录本映射的 BAM |
 | **RiboTish** | Python | **Genome** | 快 | 使用负二项分布模型检测翻译，支持差异翻译分析 |
 | **Price** | Java (GeLi) | Genome | 中等 | 基于图模型的翻译推断，可检测非经典起始密码子 |
 | **Ribotricer** | Python | Genome | 快 | 三帧周期性与读长一致性的严格筛选，输出格式清晰 |
-| **Ribowave** | Shell + R | Genome | 中等 | 利用小波分析去噪，支持移码检测和多 ORF 鉴定 |
+| **Ribowave** | Shell + R | Genome | 慢 | 利用小波分析去噪，支持移码检测和多 ORF 鉴定 |
 
 
 
@@ -67,7 +67,7 @@ Ribotaper.sh ${{HOME}}/3.align/merged/Ribo_{wildcards.group}_toGenome_merged.bam
 
 ### RibORF
 
-RibORF 通过两个统计检验来鉴定翻译的 ORF：(1) 三框周期性检验（Ribo-seq reads 是否集中在同一阅读框）；(2) read coverage 的均匀性检验（Ribo-seq reads 是否均匀覆盖整个 ORF 而非集中在一个区域）。两个条件同时满足才判定为翻译。该方法非常严格，但运行速度较慢。
+RibORF 通过两个统计检验来鉴定翻译的 ORF：(1) 三框周期性检验（Ribo-seq reads 是否集中在同一阅读框）；(2) read coverage 的均匀性检验（Ribo-seq reads 是否均匀覆盖整个 ORF 而非集中在一个区域）。两个条件同时满足才判定为翻译。
 
 - **语言**：Perl
 - **输入**：Genome mapped BAM
@@ -76,8 +76,6 @@ RibORF 通过两个统计检验来鉴定翻译的 ORF：(1) 三框周期性检�
 ```bash
 # RibORF 需要预先准备注释文件，具体参数请参考其官方文档
 ```
-
-> **注意**：RibORF 由于运行速度较慢，在大规模数据集上建议充分评估运行时间。
 
 ---
 
@@ -112,7 +110,7 @@ RiboCode -a 0.index/ribocode/allGene -c 5.ORF_analysis/RiboCode/metaplots/{wildc
 
 ### RiboTish
 
-RiboTish（Ribo-seq Translation Inference by Smoothing）使用负二项分布模型对 Ribo-seq reads 的三框周期性和覆盖均匀性建模，通过似然比检验判断 ORF 是否翻译。同时支持差异翻译分析（differential translation）。速度较快，是实用性很强的工具。
+RiboTish（Ribo-seq Translation Inference by Smoothing）使用负二项分布模型对 Ribo-seq reads 的三框周期性和覆盖均匀性建模，通过似然比检验判断 ORF 是否翻译。同时支持差异翻译分析（differential translation）。
 
 - **语言**：Python
 - **输入**：**Genome** mapped BAM
@@ -136,7 +134,7 @@ ribotish predict -p {config[threads]} --alt --altcodons GTG,TTG,CTG,ACG --frameb
 
 ### Price
 
-Price（Protein-seq Ribo-seq Inference by Computational Enrichment）基于图模型（graph model）来推断翻译事件，能够有效区分真实翻译信号与背景噪音。Price 是 GeLi 软件套件的一部分，可以检测非经典起始密码子起始的翻译。
+Price（Protein-seq Ribo-seq Inference by Computational Enrichment）基于图模型（graph model）来推断翻译事件，能够有效区分真实翻译信号与背景噪音。Price 是 Gedi 软件套件的一部分。
 
 - **语言**：Java（GeLi 平台）
 - **输入**：Genome mapped BAM
@@ -162,7 +160,7 @@ fi
 
 ### Ribotricer
 
-Ribotricer 通过严格筛选三帧周期性和 read length 一致性来鉴定活跃翻译的 ORF。它提供了一个从数据中经验学习 cutoff 的功能（`learn-cutoff`），可以自动确定最佳的筛选阈值，提高预测准确性。
+Ribotricer 通过严格筛选三帧周期性和 read length 一致性来鉴定活跃翻译的 ORF。
 
 - **语言**：Python
 - **输入**：**Genome** mapped BAM
@@ -227,23 +225,6 @@ ${{script_dir}}/Ribowave -F -a 5.ORF_analysis/Ribowave/{wildcards.group}/bedgrap
 > - 步骤 1-2 是 P-site 校准，必须先完成
 > - 步骤 3 是核心 ORF 预测
 > - 步骤 4 可选，专门用于检测已知注释 ORF 的移帧潜力
-> - Ribowave 流程步骤较多，建议仔细检查每一步的中间输出
-
----
-
-### RiboTIE
-
-RiboTIE（Ribo-seq Translation Inference Engine）采用机器学习方法（SVM 分类器），综合三框周期性、read coverage、ORF 长度等多个特征来预测翻译 ORF。相比单一统计检验，机器学习方法能更好地整合多维度信息。
-
-- **语言**：Python
-- **输入**：Genome mapped BAM
-- **速度**：中等
-
-```bash
-# RiboTIE 的具体参数配置请参考其官方文档
-```
-
-> **注意**：RiboTIE 需要训练好的模型或参考数据集来构建分类器，初次使用建议参考官方教程。
 
 ---
 
