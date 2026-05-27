@@ -1038,12 +1038,7 @@ article main#content h1 {
   transition: all 0.15s ease;
 }
 
-/* --- Code blocks --- */
-.content pre {
-  border: 1px solid var(--cy-border) !important;
-  border-radius: 10px !important;
-  margin: 1.25rem 0 !important;
-}
+/* --- Code blocks (keep Hextra defaults) --- */
 
 .content :not(pre) > code {
   background: var(--cy-bg-section) !important;
