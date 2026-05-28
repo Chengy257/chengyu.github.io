@@ -4,6 +4,10 @@
 /assets/jsconfig.json
 hugo_stats.json
 hermes_remsume.txt
+hermes_resume.txt
+
+# Scripts
+wrrap.sh
 
 # OS
 .DS_Store
