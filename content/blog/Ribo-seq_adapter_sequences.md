@@ -22,13 +22,13 @@ Ribo-seq（ribosome profiling）通过核酸酶消化未被核糖体保护的 RN
 
 由于 RPF insert 通常明显短于 Illumina SE50、SE75 或更长读长，测序时很容易从 insert 读穿进入 3′ adapter。因此，Ribo-seq 原始 reads 预处理的关键步骤通常包括：
 
-- 1. 3′ adapter trimming；
-- 2. 低质量碱基过滤；
-- 3. RPF 长度筛选；
-- 4. rRNA/tRNA/snRNA/snoRNA 等污染序列去除；
-- 5. 基因组或转录组比对；
-- 6. P-site/A-site offset 校正；
-- 7. CDS 富集和 3-nt periodicity 检查。
+1. 3′ adapter trimming；
+2. 低质量碱基过滤；
+3. RPF 长度筛选；
+4. rRNA/tRNA/snRNA/snoRNA 等污染序列去除；
+5. 基因组或转录组比对；
+6. P-site/A-site offset 校正；
+7. CDS 富集和 3-nt periodicity 检查。
 
 Cutadapt 官方文档说明：当待测片段短于 read length 时，read 会包含 adapter；`-a ADAPTER` 用于识别并去除 3′ adapter 及其后续序列。参考：[Cutadapt user guide](https://cutadapt.readthedocs.io/en/stable/guide.html)。
 
