@@ -8,6 +8,7 @@ hermes_resume.txt
 
 # Scripts
 wrap.sh
+git_sync.sh
 
 # OS
 .DS_Store
