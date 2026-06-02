@@ -11,7 +11,7 @@ TocOpen: false
 
 ---
 
-> 整理日期：2026-05-28  
+> 整理日期：2026-06-03  
 >
 > 主题：基因组注释格式差异
 
@@ -23,14 +23,7 @@ TocOpen: false
 
 ## 1. 问题发现：从一次多物种注释文件整理开始
 
-在个人项目中，需要对多个物种的基因组注释文件进行统一整理。这些注释文件来自不同来源，例如 Ensembl Plants、NCBI RefSeq、JGI/Phytozome，以及一些物种社区数据库。最开始的需求其实很直接：
-
-- 提取每个物种的 gene / transcript / exon / CDS 信息；
-- 根据注释文件重建 CDS 序列；
-- 后续用于 ORF、蛋白序列、Ribo-seq metagene、起始/终止位点附近信号等分析；
-- 尽量把不同物种整理成同一套内部格式，方便大规模批处理。
-
-一开始我以为，只要文件扩展名是 `.gtf`，那么 `CDS` 的定义应该是一致的。实际排查时才发现并非如此。
+在个人项目中，需要对多个物种的基因组注释文件进行统一整理。这些注释文件来自不同来源，例如 Ensembl Plants、NCBI RefSeq、JGI/Phytozome，以及一些物种社区数据库。由于一些报错问题，进一步深入排查后发现，问题的根源在于不同 `.gtf` 文件中对 `CDS` 的定义并不一致。
 
 在一些 GTF 文件中，蛋白编码转录本会出现类似这样的结构：
 
@@ -54,11 +47,11 @@ CDS          100   999
 
 于是问题就变成了：
 
-> 为什么同样叫作 GTF 的参考注释文件，不同物种、不同数据库来源中的 `CDS` 定义会不一致？到底哪一种才是“标准”？
+> 那么为什么同样的 GTF 格式参考注释文件，不同物种、不同数据库来源中的 `CDS` 定义会不一致？
 
 ---
 
-## 2. 问题原因分析
+## 2. 问题原因
 
 ### 2.1 标准 GTF 格式是如何规定的？
 
@@ -99,7 +92,7 @@ stop_codon       = separate feature
 
 这也解释了为什么用 GTF 重建蛋白序列时，拼接 `CDS` 后通常不应该得到末尾的 `*`。如果需要终止密码子的坐标，需要额外读取 `stop_codon` feature。
 
-### 2.2 现有各大数据库的情况分析
+### 2.2 现有各大数据库情况
 
 #### 2.2.1 Ensembl / GENCODE 风格：GTF 中常见单独的 stop_codon
 
@@ -267,41 +260,28 @@ BED 非常适合 bedtools 这类区间操作；genePred 很适合 UCSC 内部数
 
 ## 6. 参考文献与资料
 
-1. GENCODE. **Data format: GENCODE GTF/GFF3 format description**.  
-   https://www.gencodegenes.org/pages/data_format.html
-
-2. Ensembl. **GFF/GTF File Format - Definition and supported options**.  
-   https://www.ensembl.org/info/website/upload/gff.html
-
-3. Ensembl Plants. **Genome Annotation / GFF annotation import**.  
-   https://plants.ensembl.org/info/genome/annotation/index.html  
-   https://plants.ensembl.org/info/genome/annotation/gff_annotation.html
-
-4. The Sequence Ontology. **GFF3 specification**.  
-   https://github.com/The-Sequence-Ontology/Specifications/blob/master/gff3.md
-
-5. NCBI Datasets. **GFF3 format - NCBI annotation files**.  
-   https://www.ncbi.nlm.nih.gov/datasets/docs/v2/reference-docs/file-formats/annotation-files/about-ncbi-gff3/
-
-6. NCBI GenBank. **Annotating Genomes with GFF3 or GTF files**.  
-   https://www.ncbi.nlm.nih.gov/genbank/genomes_gff/
-
-7. UCSC Genome Browser. **Frequently Asked Questions: Data File Formats**.  
-   https://genome.ucsc.edu/FAQ/FAQformat.html
-
-8. UCSC Genome Browser. **Genome Browser FAQ / gene track notes on stop codon handling**.  
-   https://ucsc.crg.eu/FAQ/FAQtracks.html
-
-9. AGAT documentation. **The GTF/GFF formats**.  
-   https://agat.readthedocs.io/en/latest/gxf.html
-
-10. Saha S. et al. **Recommendations for extending the GFF3 specification for improved interoperability of genomic data**.  
-    arXiv:2202.07782.  
-    https://arxiv.org/abs/2202.07782
-
-11. Goodstein D.M. et al. **Phytozome: a comparative platform for green plant genomics**. *Nucleic Acids Research*, 2012.  
-    https://pmc.ncbi.nlm.nih.gov/articles/PMC3245001/
-
-12. Biostars discussion. **GFF/GTF: how to translate CDS genomic coordinates**.  
-    https://www.biostars.org/p/9481226/
+1. GENCODE. **Data format: GENCODE GTF/GFF3 format description**.  https://www.gencodegenes.org/pages/data_format.html
+   
+2. Ensembl. **GFF/GTF File Format - Definition and supported options**.  https://www.ensembl.org/info/website/upload/gff.html
+   
+3. Ensembl Plants. **Genome Annotation / GFF annotation import**.  https://plants.ensembl.org/info/genome/annotation/index.html , https://plants.ensembl.org/info/genome/annotation/gff_annotation.html
+   
+4. The Sequence Ontology. **GFF3 specification**. https://github.com/The-Sequence-Ontology/Specifications/blob/master/gff3.md
+   
+5. NCBI Datasets. **GFF3 format - NCBI annotation files**.  https://www.ncbi.nlm.nih.gov/datasets/docs/v2/reference-docs/file-formats/annotation-files/about-ncbi-gff3/
+   
+6. NCBI GenBank. **Annotating Genomes with GFF3 or GTF files**.  https://www.ncbi.nlm.nih.gov/genbank/genomes_gff/
+   
+7. UCSC Genome Browser. **Frequently Asked Questions: Data File Formats**.  https://genome.ucsc.edu/FAQ/FAQformat.html
+   
+8. UCSC Genome Browser. **Genome Browser FAQ / gene track notes on stop codon handling**.  https://ucsc.crg.eu/FAQ/FAQtracks.html
+   
+9. AGAT documentation. **The GTF/GFF formats**. https://agat.readthedocs.io/en/latest/gxf.html
+   
+10. Saha S. et al. **Recommendations for extending the GFF3 specification for improved interoperability of genomic data**. 
+    arXiv:2202.07782.  https://arxiv.org/abs/2202.07782
+    
+11. Goodstein D.M. et al. **Phytozome: a comparative platform for green plant genomics**. *Nucleic Acids Research*, 2012.  https://pmc.ncbi.nlm.nih.gov/articles/PMC3245001/
+    
+12. Biostars discussion. **GFF/GTF: how to translate CDS genomic coordinates**. https://www.biostars.org/p/9481226/
 
