@@ -5,7 +5,7 @@
 # Site: https://chengy257.github.io/
 #########################################################################
 
-baseURL: "https://chengy257.github.io/chengyu.github.io/"
+baseURL: "https://chengy257.github.io/"
 title: "Cy257's Blog"
 languageCode: "zh-cn"
 defaultContentLanguage: "zh"
