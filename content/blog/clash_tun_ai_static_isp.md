@@ -4,11 +4,7 @@ date: 2026-06-11
 tags: [Clash Verge, TUN, Codex, OpenAI, Static ISP, SOCKS5, GitHub, Bing]
 ---
 
-# 从 Codex stream 断连到 Clash Verge TUN 分流：AI 专用静态 ISP 代理配置记录
-
 本文记录了一次典型的网络代理排查过程。最初的问题并非"要配置一套复杂的 Clash 规则"，而是 **Codex 在使用的过程中反复出现 stream 断连、TLS 握手中断、响应流中途 EOF 等问题**。为了让 Codex / ChatGPT / OpenAI API 这类 AI 服务更稳定地运行，我尝试在 Clash Verge 的 TUN 模式下，为 AI 服务单独建立了一条静态 ISP 代理通道。之后又遇到了 Bing、GitHub 在 TUN 模式下访问异常的情况，最终形成了一套相对保守、便于维护的配置方案。
-
-本文不是一份"一键复制即可适配所有网络环境"的模板，而是一次从问题发现、方案尝试、异常排查到最终收敛的完整配置复盘。
 
 ---
 
