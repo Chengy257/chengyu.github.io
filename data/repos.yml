@@ -1,0 +1,19 @@
+# 首页「开源项目」区域仓库清单
+# 构建时通过 GitHub API 自动填充 star 数 / 主语言 / 可见性；
+# 描述为中文定制文案（API 的 description 字段可能为英文或空，不使用）。
+# 新增项目：在此文件追加一项即可，重新构建部署后生效。
+
+owner: Chengy257
+
+repos:
+  - name: RiceNoncanonicalORFome.github.io
+    description: 水稻非经典 ORF 组学数据库：整合 lncRNA 来源微肽 (micropeptide) 的注释、表达与功能信息，支持在线浏览与检索。
+    language: HTML/CSS/JS
+
+  - name: rice_lncORF_xgboost_classifier
+    description: 基于 XGBoost 的水稻 lncRNA 编码能力预测分类器，用于鉴别具有翻译潜力的非经典小肽编码 ORF。
+    language: Python
+
+  - name: glm-conductor
+    description: 面向 ZCode 的 GLM 双模型选择性编排插件：GLM-5.3 指挥、GLM-5.3-Flash 实施、独立只读终审，关键契约由运行时钩子确定性强制。
+    language: Python

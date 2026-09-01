@@ -64,42 +64,32 @@
         <a href="https://github.com/Chengy257?tab=repositories" target="_blank" rel="noreferrer" class="cy-link-more">GitHub &rarr;</a>
       </div>
       <div class="cy-card-grid cy-card-grid-2">
-        <a href="https://github.com/Chengy257/RiceNoncanonicalORFome.github.io" target="_blank" rel="noreferrer" class="cy-repo-card cy-repo-link">
+        {{ $owner := site.Data.repos.owner }}
+        {{ $ua := "chengyu-blog-hugo" }}
+        {{ $reqHeaders := dict "User-Agent" $ua }}
+        {{ with getenv "HUGO_GITHUB_TOKEN" }}{{ $reqHeaders = merge $reqHeaders (dict "Authorization" (printf "Bearer %s" .)) }}{{ end }}
+        {{ range site.Data.repos.repos }}
+        {{ $slug := .name }}
+        {{ $apiUrl := printf "https://api.github.com/repos/%s/%s" $owner $slug }}
+        {{ $info := dict "language" .language "stargazers_count" 0 "visibility" "public" }}
+        {{ with try (resources.GetRemote $apiUrl (dict "headers" $reqHeaders)) }}
+          {{ with .Value }}{{ $info = . | transform.Unmarshal }}{{ end }}
+        {{ end }}
+        {{ $lang := $info.language | default .language }}
+        {{ $langColor := index site.Data.language_colors $lang | default site.Data.language_colors.default }}
+        <a href="https://github.com/{{ $owner }}/{{ $slug }}" target="_blank" rel="noreferrer" class="cy-repo-card cy-repo-link">
           <div class="cy-repo-header">
             {{ partial "utils/icon.html" (dict "name" "folder" "attributes" "height=18") }}
-            <span class="cy-repo-name">RiceNoncanonicalORFome</span>
-            <span class="cy-repo-visibility">Public</span>
+            <span class="cy-repo-name">{{ $slug }}</span>
+            <span class="cy-repo-visibility">{{ $info.visibility | default "public" | title }}</span>
           </div>
-          <p class="cy-repo-desc">水稻非经典 ORF 组学数据库：整合 lncRNA 来源微肽 (micropeptide) 的注释、表达与功能信息，支持在线浏览与检索。</p>
+          <p class="cy-repo-desc">{{ .description }}</p>
           <div class="cy-repo-meta">
-            <span class="cy-repo-lang"><span class="cy-dot cy-dot-html"></span>HTML/CSS/JS</span>
-            <span class="cy-repo-stars">{{ partial "utils/icon.html" (dict "name" "star" "attributes" "height=14") }} 0</span>
+            <span class="cy-repo-lang"><span class="cy-dot" style="background: {{ $langColor }}"></span>{{ $lang }}</span>
+            <span class="cy-repo-stars">{{ partial "utils/icon.html" (dict "name" "star" "attributes" "height=14") }} {{ $info.stargazers_count | default 0 }}</span>
           </div>
         </a>
-        <a href="https://github.com/Chengy257/rice_lncORF_xgboost_classifier" target="_blank" rel="noreferrer" class="cy-repo-card cy-repo-link">
-          <div class="cy-repo-header">
-            {{ partial "utils/icon.html" (dict "name" "folder" "attributes" "height=18") }}
-            <span class="cy-repo-name">rice_lncORF_xgboost_classifier</span>
-            <span class="cy-repo-visibility">Public</span>
-          </div>
-          <p class="cy-repo-desc">基于 XGBoost 的水稻 lncRNA 编码能力预测分类器，用于鉴别具有翻译潜力的非经典小肽编码 ORF。</p>
-          <div class="cy-repo-meta">
-            <span class="cy-repo-lang"><span class="cy-dot cy-dot-python"></span>Python</span>
-            <span class="cy-repo-stars">{{ partial "utils/icon.html" (dict "name" "star" "attributes" "height=14") }} 0</span>
-          </div>
-        </a>
-        <a href="https://github.com/Chengy257/glm-conductor" target="_blank" rel="noreferrer" class="cy-repo-card cy-repo-link">
-          <div class="cy-repo-header">
-            {{ partial "utils/icon.html" (dict "name" "folder" "attributes" "height=18") }}
-            <span class="cy-repo-name">glm-conductor</span>
-            <span class="cy-repo-visibility">Public</span>
-          </div>
-          <p class="cy-repo-desc">面向 ZCode 的 GLM 双模型选择性编排插件：GLM-5.3 指挥、GLM-5.3-Flash 实施、独立只读终审，关键契约由运行时钩子确定性强制。</p>
-          <div class="cy-repo-meta">
-            <span class="cy-repo-lang"><span class="cy-dot cy-dot-python"></span>Python</span>
-            <span class="cy-repo-stars">{{ partial "utils/icon.html" (dict "name" "star" "attributes" "height=14") }} 0</span>
-          </div>
-        </a>
+        {{ end }}
       </div>
     </section>
 

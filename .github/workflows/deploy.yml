@@ -45,6 +45,9 @@ jobs:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
           HUGO_ENVIRONMENT: production
           TZ: Asia/Shanghai
+          # 供首页「开源项目」卡片调用 GitHub API 认证使用（限额 5000 次/时，避免匿名限流）。
+          # 命名带 HUGO_ 前缀以匹配 Hugo security.funcs.getenv 白名单（^HUGO_）。
+          HUGO_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: hugo --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
 
       - name: Upload artifact

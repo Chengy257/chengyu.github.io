@@ -1,0 +1,19 @@
+# GitHub 主语言 → 色点颜色映射（供「开源项目」卡片使用）
+# 未知语言回退到 default 灰色。
+# 颜色取值参考 GitHub linguist 语言配色。
+
+Python: "#3572A5"
+R: "#198CE7"
+HTML: "#e34c26"
+CSS: "#663399"
+JavaScript: "#f1e05a"
+TypeScript: "#3178c6"
+Jupyter Notebook: "#DA5B0B"
+Shell: "#89e051"
+Bash: "#89e051"
+Makefile: "#427819"
+Markdown: "#083fa1"
+TeX: "#3D6117"
+JSON: "#292929"
+YAML: "#cb171e"
+default: "#8b949e"
