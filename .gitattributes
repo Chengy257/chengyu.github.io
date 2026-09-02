@@ -1,0 +1,10 @@
+# 统一 LF 换行（配合 WSL 开发）
+* text=auto eol=lf
+*.sh text eol=lf
+
+# 二进制
+*.jpg binary
+*.png binary
+*.ico binary
+*.webp binary
+*.pdf binary

@@ -3,12 +3,8 @@
 /resources/_gen/
 /assets/jsconfig.json
 hugo_stats.json
-hermes_remsume.txt
+.hugo_build.lock
 hermes_resume.txt
-
-# Scripts
-wrap.sh
-git_sync.sh
 
 # OS
 .DS_Store
