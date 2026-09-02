@@ -7,16 +7,16 @@
 
 个人技术博客/简历站（生物信息学方向），技术栈：
 
-- **Hugo**（extended，版本与 CI 严格一致，见 `deploy.yml` 的 `HUGO_VERSION`）
-- **主题**：Hextra，以 **git submodule** 方式固定于 `themes/hextra`（检出 release tag 或其后少量提交，提交指针即可升级，禁止在主题目录内直接改文件）
+- **Hugo**（extended **0.165.0**，版本与 CI 严格一致，见 `deploy.yml` 的 `HUGO_VERSION`；升级走 §4 流程）
+- **主题**：Hextra，以 **git submodule** 方式固定于 `themes/hextra`（当前 pin `v0.12.3-17-g38d18a5`，即上游 main；检出 release tag 或其后提交即可升级，禁止在主题目录内直接改文件）
 - **站点形态**：GitHub Pages 项目站（Actions 部署，`baseURL` 带 `/chengyu.github.io/` 子路径，勿改回根路径）
 
 ## 2. 开发环境（硬约束）
 
 所有 git / hugo / gh 命令必须在**本机 WSL** 内执行，Windows 侧仅作文件宿主：
 
-- 发行版：`Ubuntu-18.04`（WSL2，默认发行版）；仓库路径：`/mnt/f/MyBlog/chengyu.github.io`
-- Hugo 二进制：`/home/chengyu/.local/bin/hugo`；hugo 缓存：`/home/chengyu/.cache/hugo_cache`
+- 仓库路径：`/mnt/f/MyBlog/chengyu.github.io`；发行版：`Ubuntu-18.04`（WSL2，glibc 实测 2.35——曾就地升级，新版 Hugo 可运行）
+- Hugo 二进制：`/home/chengyu/.local/bin/hugo`（0.165.0；旧版保留为 `hugo-0.147.4` 供回滚）；hugo 缓存：`/home/chengyu/.cache/hugo_cache`
 - git 2.34.1（身份已配置）；gh 已登录 `chengy257`（repo/workflow 权限，可改远端设置）
 - 本会话（DSH）执行方式：`wsl -- bash -lc '<命令>'`；Windows 侧 git 有 dubious ownership 问题，禁止使用
 - WSL 内网络可直连 github.com；代理类环境变量（HTTP_PROXY 等）可能干扰 git，失败时先 unset 重试
@@ -45,8 +45,9 @@ hugo server -D --bind 0.0.0.0
 
 ## 4. 版本纪律（升级前必读）
 
-- **WSL 的 hugo 与 CI 的 `HUGO_VERSION` 必须保持同一版本**（当前 0.147.4+extended）。升级流程：WSL 实测新版本能运行（Ubuntu-18.04 glibc 较旧，新版可能跑不起来）→ 替换 WSL 二进制 → 同步改 `deploy.yml` → 全量回归。
-- Hextra 升级：`git -C themes/hextra fetch origin` → 检出选定 release tag → 提交 submodule 指针。**升级前通读目标版 release notes 中破坏性变更清单**。
+- **WSL 的 hugo 与 CI 的 `HUGO_VERSION` 必须保持同一版本**（当前 **0.165.0**+extended）。升级流程：WSL 实测新版本能运行（glibc 2.35 已过验证）→ 替换 WSL 二进制（旧版改名保留）→ 同步改 `deploy.yml` → 全量回归（构建须 0 warn/error）。
+- 新 Hugo 迁移注意：`site.Data` → `hugo.Data`（v0.156+ 弃用）、`languageCode` → `locale`（v0.158+ 弃用）；主题自带 `_partials/utils/hugo-compat/` 兼容层，勿绕开。
+- Hextra 升级：`git -C themes/hextra fetch origin` → 检出选定提交（一般取上游 main，须 >= 最新 release tag 且含其后修复）→ 提交 submodule 指针。**升级前通读目标版 release notes 中破坏性变更清单**。
 - 主题升级必须回归以下**覆盖文件**（Hextra 布局变更最可能影响它们）：
   - `layouts/hextra-home.html`（首页自定义大改）
   - `layouts/blog/list.html`、`layouts/blog/single.html`（覆盖主题同名列）
@@ -62,7 +63,7 @@ hugo server -D --bind 0.0.0.0
   - 论文 → `data/publications.yml`（首页「发表论文」与简历页共用）
   - 教育/工作经历、专业技能、研究兴趣 → `data/profile.yml`
   - 首页「开源项目」卡片 → `data/repos.yml`（描述为中文定制文案；star/语言构建时由 GitHub API 填充，失败自动降级为 0/yml 默认值）
-- 自由文本例外：`content/about.md` 的「基本信息」段落与首页顶部欢迎语允许各自维护，改动时注意两处同步。
+- 自由文本例外：`content/about.md` 的「基本信息」「专业技能」段落与首页顶部欢迎语/技能卡片为各自语境定制文本，允许表述不同（改动时注意两处同步）。
 - 时区陷阱：`timeZone: Asia/Shanghai`，给文章配未来日期会导致 `buildFuture: false` 下不渲染。
 - 图片放 `static/images/`，引用走 `relURL`。
 
