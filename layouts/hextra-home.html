@@ -64,19 +64,27 @@
         <a href="https://github.com/Chengy257?tab=repositories" target="_blank" rel="noreferrer" class="cy-link-more">GitHub &rarr;</a>
       </div>
       <div class="cy-card-grid cy-card-grid-2">
+        {{- /* 批量拉取用户仓库列表（1 次请求），按 name 索引；
+               构建期无网络 / 无权限时降级为 repos.yml 的语言与 star=0。
+               HUGO_GITHUB_TOKEN 命名须带 HUGO_ 前缀（hugo security.getenv 白名单）。 */ -}}
         {{ $owner := site.Data.repos.owner }}
         {{ $ua := "chengyu-blog-hugo" }}
         {{ $reqHeaders := dict "User-Agent" $ua }}
         {{ with getenv "HUGO_GITHUB_TOKEN" }}{{ $reqHeaders = merge $reqHeaders (dict "Authorization" (printf "Bearer %s" .)) }}{{ end }}
+        {{ $repos := dict }}
+        {{ $apiUrl := printf "https://api.github.com/users/%s/repos?per_page=100&sort=updated" $owner }}
+        {{ with try (resources.GetRemote $apiUrl (dict "headers" $reqHeaders)) }}
+          {{ with .Value }}
+            {{ range . | transform.Unmarshal }}
+              {{ $repos = merge $repos (dict .name .) }}
+            {{ end }}
+          {{ end }}
+        {{ end }}
         {{ range site.Data.repos.repos }}
         {{ $slug := .name }}
-        {{ $apiUrl := printf "https://api.github.com/repos/%s/%s" $owner $slug }}
-        {{ $info := dict "language" .language "stargazers_count" 0 "visibility" "public" }}
-        {{ with try (resources.GetRemote $apiUrl (dict "headers" $reqHeaders)) }}
-          {{ with .Value }}{{ $info = . | transform.Unmarshal }}{{ end }}
-        {{ end }}
-        {{ $lang := $info.language | default .language }}
-        {{ $langColor := index site.Data.language_colors $lang | default site.Data.language_colors.default }}
+        {{ $info := index $repos $slug | default (dict "language" .language "stargazers_count" 0 "visibility" "public") }}
+        {{ $lang := $info.language | default (index (split .language "/") 0) }}
+        {{ $langColor := index site.Data.language_colors (index (split $lang "/") 0) | default site.Data.language_colors.default }}
         <a href="https://github.com/{{ $owner }}/{{ $slug }}" target="_blank" rel="noreferrer" class="cy-repo-card cy-repo-link">
           <div class="cy-repo-header">
             {{ partial "utils/icon.html" (dict "name" "folder" "attributes" "height=18") }}
