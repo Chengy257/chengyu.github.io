@@ -8,7 +8,7 @@
 baseURL: "https://chengy257.github.io/chengyu.github.io/"
 timeZone: "Asia/Shanghai"
 title: "Cy257's Blog"
-languageCode: "zh-cn"
+locale: "zh-CN"
 defaultContentLanguage: "zh"
 theme: "hextra"
 

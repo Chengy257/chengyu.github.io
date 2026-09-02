@@ -67,7 +67,7 @@
         {{- /* 批量拉取用户仓库列表（1 次请求），按 name 索引；
                构建期无网络 / 无权限时降级为 repos.yml 的语言与 star=0。
                HUGO_GITHUB_TOKEN 命名须带 HUGO_ 前缀（hugo security.getenv 白名单）。 */ -}}
-        {{ $owner := site.Data.repos.owner }}
+        {{ $owner := hugo.Data.repos.owner }}
         {{ $ua := "chengyu-blog-hugo" }}
         {{ $reqHeaders := dict "User-Agent" $ua }}
         {{ with getenv "HUGO_GITHUB_TOKEN" }}{{ $reqHeaders = merge $reqHeaders (dict "Authorization" (printf "Bearer %s" .)) }}{{ end }}
@@ -80,11 +80,11 @@
             {{ end }}
           {{ end }}
         {{ end }}
-        {{ range site.Data.repos.repos }}
+        {{ range hugo.Data.repos.repos }}
         {{ $slug := .name }}
         {{ $info := index $repos $slug | default (dict "language" .language "stargazers_count" 0 "visibility" "public") }}
         {{ $lang := $info.language | default (index (split .language "/") 0) }}
-        {{ $langColor := index site.Data.language_colors (index (split $lang "/") 0) | default site.Data.language_colors.default }}
+        {{ $langColor := index hugo.Data.language_colors (index (split $lang "/") 0) | default hugo.Data.language_colors.default }}
         <a href="https://github.com/{{ $owner }}/{{ $slug }}" target="_blank" rel="noreferrer" class="cy-repo-card cy-repo-link">
           <div class="cy-repo-header">
             {{ partial "utils/icon.html" (dict "name" "folder" "attributes" "height=18") }}
@@ -123,7 +123,7 @@
       <div class="cy-timeline">
         <h4 class="cy-sub-title">个人经历</h4>
         <div class="cy-timeline-list">
-          {{ range site.Data.profile.timeline }}
+          {{ range hugo.Data.profile.timeline }}
           <div class="cy-timeline-item">
             <span class="cy-timeline-period">{{ .period }}</span>
             <div class="cy-timeline-body">
@@ -139,7 +139,7 @@
       <div class="cy-research">
         <h4 class="cy-sub-title">专业技能</h4>
         <div class="cy-card-grid">
-          {{ range site.Data.profile.skills }}
+          {{ range hugo.Data.profile.skills }}
           <div class="cy-area-card">
             <div class="cy-area-icon">{{ partial "utils/icon.html" (dict "name" .icon "attributes" "height=28") }}</div>
             <h3>{{ .name }}</h3>
@@ -153,7 +153,7 @@
       <div class="cy-skills">
         <h4 class="cy-sub-title">研究兴趣方向</h4>
         <div class="cy-research-card">
-          {{ range $i, $item := site.Data.profile.interests }}
+          {{ range $i, $item := hugo.Data.profile.interests }}
           <div class="cy-research-item">
             <span class="cy-research-num">{{ add $i 1 }}</span>
             <div class="cy-research-body">

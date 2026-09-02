@@ -8,12 +8,12 @@
         cv.html 的样式选择器依赖该顺序。
   ============================================================ */ -}}
 {{- $variant := .variant | default "cv" -}}
-{{- $footnote := site.Data.publications.footnote | default "" -}}
+{{- $footnote := hugo.Data.publications.footnote | default "" -}}
 
 {{- if eq $variant "home" -}}
   <div class="cy-pub-list">
     {{- $n := 0 -}}
-    {{- range site.Data.publications.pubs -}}
+    {{- range hugo.Data.publications.pubs -}}
       {{- range .items -}}
         {{- $n = add $n 1 -}}
         <div class="cy-pub-item">
@@ -31,7 +31,7 @@
     <p style="font-size: 0.82rem; color: var(--cy-text-secondary); margin-top: 0.75rem;">({{ . }})</p>
   {{- end -}}
 {{- else -}}
-  {{- range site.Data.publications.pubs -}}
+  {{- range hugo.Data.publications.pubs -}}
     <h3>{{ .year }}</h3>
     <ol>
       {{- range .items -}}

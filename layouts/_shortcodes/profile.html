@@ -1,8 +1,8 @@
 {{- /* 简历页经历列表：{{< profile "work" >}} 或 {{< profile "edu" >}}（数据源 data/profile.yml）*/ -}}
 {{- $which := .Get 0 | default "all" -}}
-{{- $rows := where site.Data.profile.timeline "kind" $which -}}
+{{- $rows := where hugo.Data.profile.timeline "kind" $which -}}
 {{- if eq $which "all" -}}
-  {{- $rows = site.Data.profile.timeline -}}
+  {{- $rows = hugo.Data.profile.timeline -}}
 {{- end -}}
 <ul>
   {{- range $rows -}}

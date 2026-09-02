@@ -22,10 +22,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      HUGO_VERSION: 0.147.4
+      # 与本地 WSL 的 hugo 版本严格一致（见 AGENTS.md 版本纪律）
+      HUGO_VERSION: 0.165.0
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           submodules: recursive
           fetch-depth: 0
@@ -38,7 +39,7 @@ jobs:
 
       - name: Setup Pages
         id: pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Build with Hugo
         env:
@@ -48,10 +49,10 @@ jobs:
           # 供首页「开源项目」卡片调用 GitHub API 认证使用（限额 5000 次/时，避免匿名限流）。
           # 命名带 HUGO_ 前缀以匹配 Hugo security.funcs.getenv 白名单（^HUGO_）。
           HUGO_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: hugo --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
+        run: hugo --minify --cleanDestinationDir --baseURL "${{ steps.pages.outputs.base_url }}/"
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: ./public
 
@@ -64,4 +65,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
