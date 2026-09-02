@@ -1,0 +1,48 @@
+# 单一数据源：个人经历 / 技能卡片 / 研究兴趣
+# 消费方：
+#   - 首页 hextra-home.html：「个人经历」时间线(range timeline)、
+#     「专业技能」卡片(range skills，icon 名称须为 Hextra 图标名)、「研究兴趣方向」(range interests)
+#   - 简历页 about.md：{{< profile "work" >}} / {{< profile "edu" >}} 渲染工作/教育经历
+# 例外说明：about.md 的「基本信息」与「专业技能」为简历语境定制文本，允许与首页卡片表述不同（手动维护）。
+
+timeline:
+  - kind: work
+    period: "2025.7 – 至今"
+    title: "博士后"
+    org: "中山大学 - 生命科学学院"
+  - kind: edu
+    period: "2020 – 2025"
+    title: "博士学位（生物学）"
+    org: "中山大学 - 生命科学学院"
+  - kind: edu
+    period: "2016 – 2020"
+    title: "学士学位（生物技术）"
+    org: "深圳大学 - 生命与海洋科学学院"
+
+skills:
+  - icon: beaker
+    name: "转录组分析"
+    desc: "Bulk/Single cell RNA-seq 分析, lncRNA、sRNA 等非编码 RNA 鉴定、表达与功能分析。"
+  - icon: chart-bar
+    name: "翻译组分析"
+    desc: "Ribo-seq、蛋白质组学数据分析及非经典翻译 ORF 的鉴定与功能分析"
+  - icon: globe-alt
+    name: "表观组分析"
+    desc: "ChIP-seq/Cut&Tag/ATAC-seq/HiC 组学分析。"
+  - icon: terminal
+    name: "基因组分析"
+    desc: "GWAS, 群体进化与比较基因组学分析。"
+  - icon: pencil-alt
+    name: "数据可视化&工具开发"
+    desc: "R ggplot2, Python 科研绘图; Python/R/Bash CLI 工具, Snakemake 流程搭建。"
+  - icon: academic-cap
+    name: "基础技能"
+    desc: "Agentic Coding/AI 辅助编程开发, Linux HPC 服务器管理使用等。"
+
+interests:
+  - name: "植物非编码 RNA 功能相关的生物信息学分析"
+    desc: "关注植物非编码 RNA 的表达特征、序列保守性、分子互作关系及其潜在功能机制解析。"
+  - name: "非经典翻译及编码微肽的鉴定与功能分析"
+    desc: "主要围绕非经典翻译事件识别、微肽编码潜能评估、功能注释及其生物学意义开展分析研究。"
+  - name: "生物信息学分析流程、工具与数据库开发"
+    desc: "致力于开发高效、可复用的生物信息学分析流程、计算工具和数据资源平台，以支持多组学数据整合分析与功能挖掘。"

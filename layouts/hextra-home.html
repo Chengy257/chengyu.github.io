@@ -111,142 +111,59 @@
         </div>
       </div>
 
-      <!-- 个人经历 -->
+      <!-- 个人经历（数据源 data/profile.yml） -->
       <div class="cy-timeline">
         <h4 class="cy-sub-title">个人经历</h4>
         <div class="cy-timeline-list">
+          {{ range site.Data.profile.timeline }}
           <div class="cy-timeline-item">
-            <span class="cy-timeline-period">2025.7 &ndash; 至今</span>
+            <span class="cy-timeline-period">{{ .period }}</span>
             <div class="cy-timeline-body">
-              <p class="cy-timeline-title"> 博士后 </p>
-              <p class="cy-timeline-desc"> 中山大学 - 生命科学学院 </p>
+              <p class="cy-timeline-title"> {{ .title }} </p>
+              <p class="cy-timeline-desc"> {{ .org }} </p>
             </div>
           </div>
-          <div class="cy-timeline-item">
-            <span class="cy-timeline-period">2020 &ndash; 2025</span>
-            <div class="cy-timeline-body">
-              <p class="cy-timeline-title"> 博士学位（生物学） </p>
-              <p class="cy-timeline-desc"> 中山大学 - 生命科学学院 </p>
-            </div>
-          </div>
-          <div class="cy-timeline-item">
-            <span class="cy-timeline-period">2016 &ndash; 2020</span>
-            <div class="cy-timeline-body">
-              <p class="cy-timeline-title"> 学士学位（生物技术）</p>
-              <p class="cy-timeline-desc"> 深圳大学 - 生命与海洋科学学院 </p>
-            </div>
-          </div>
+          {{ end }}
         </div>
-        
       </div>
 
-      <!-- 专业技能 -->
+      <!-- 专业技能（数据源 data/profile.yml） -->
       <div class="cy-research">
         <h4 class="cy-sub-title">专业技能</h4>
         <div class="cy-card-grid">
+          {{ range site.Data.profile.skills }}
           <div class="cy-area-card">
-            <div class="cy-area-icon">{{ partial "utils/icon.html" (dict "name" "beaker" "attributes" "height=28") }}</div>
-            <h3>转录组分析</h3>
-            <p> Bulk/Single cell RNA-seq 分析, lncRNA、sRNA 等非编码 RNA 鉴定、表达与功能分析。</p>
+            <div class="cy-area-icon">{{ partial "utils/icon.html" (dict "name" .icon "attributes" "height=28") }}</div>
+            <h3>{{ .name }}</h3>
+            <p> {{ .desc }} </p>
           </div>
-          <div class="cy-area-card">
-            <div class="cy-area-icon">{{ partial "utils/icon.html" (dict "name" "chart-bar" "attributes" "height=28") }}</div>
-            <h3>翻译组分析</h3>
-            <p>Ribo-seq、蛋白质组学数据分析及非经典翻译 ORF 的鉴定与功能分析</p>
-          </div>
-          <div class="cy-area-card">
-            <div class="cy-area-icon">{{ partial "utils/icon.html" (dict "name" "globe-alt" "attributes" "height=28") }}</div>
-            <h3>表观组分析</h3>
-            <p>ChIP-seq/Cut&amp;Tag/ATAC-seq/HiC 组学分析。</p>
-          </div>
-          <div class="cy-area-card">
-            <div class="cy-area-icon">{{ partial "utils/icon.html" (dict "name" "terminal" "attributes" "height=28") }}</div>
-            <h3>基因组分析</h3>
-            <p>GWAS, 群体进化与比较基因组学分析。</p>
-          </div>
-          <div class="cy-area-card">
-            <div class="cy-area-icon">{{ partial "utils/icon.html" (dict "name" "pencil-alt" "attributes" "height=28") }}</div>
-            <h3>数据可视化&工具开发</h3>
-            <p>R ggplot2, Python 科研绘图; Python/R/Bash CLI 工具, Snakemake 流程搭建。</p>
-          </div>
-          <div class="cy-area-card">
-            <div class="cy-area-icon">{{ partial "utils/icon.html" (dict "name" "academic-cap" "attributes" "height=28") }}</div>
-            <h3>基础技能</h3>
-            <p>Agentic Coding/AI 辅助编程开发, Linux HPC 服务器管理使用等。</p>
-          </div>
+          {{ end }}
         </div>
       </div>
 
-      <!-- 研究兴趣/方向 -->
+      <!-- 研究兴趣/方向（数据源 data/profile.yml） -->
       <div class="cy-skills">
         <h4 class="cy-sub-title">研究兴趣方向</h4>
         <div class="cy-research-card">
+          {{ range $i, $item := site.Data.profile.interests }}
           <div class="cy-research-item">
-            <span class="cy-research-num">1</span>
+            <span class="cy-research-num">{{ add $i 1 }}</span>
             <div class="cy-research-body">
-              <span class="cy-research-name">植物非编码 RNA 功能相关的生物信息学分析</span>
-              <p class="cy-research-desc">关注植物非编码 RNA 的表达特征、序列保守性、分子互作关系及其潜在功能机制解析。</p>
+              <span class="cy-research-name">{{ $item.name }}</span>
+              <p class="cy-research-desc">{{ $item.desc }}</p>
             </div>
           </div>
-          <div class="cy-research-item">
-            <span class="cy-research-num">2</span>
-            <div class="cy-research-body">
-              <span class="cy-research-name">非经典翻译及编码微肽的鉴定与功能分析</span>
-              <p class="cy-research-desc">主要围绕非经典翻译事件识别、微肽编码潜能评估、功能注释及其生物学意义开展分析研究。</p>
-            </div>
-          </div>
-          <div class="cy-research-item">
-            <span class="cy-research-num">3</span>
-            <div class="cy-research-body">
-              <span class="cy-research-name">生物信息学分析流程、工具与数据库开发</span>
-              <p class="cy-research-desc">致力于开发高效、可复用的生物信息学分析流程、计算工具和数据资源平台，以支持多组学数据整合分析与功能挖掘。</p>
-            </div>
-          </div>
+          {{ end }}
         </div>
       </div>
     </section>
 
-    <!-- ===== PUBLICATIONS ===== -->
+    <!-- ===== PUBLICATIONS（数据源 data/publications.yml，与简历页共享） ===== -->
     <section class="cy-section">
       <div class="cy-section-header">
         <h2 class="cy-section-title">发表论文</h2>
       </div>
-
-      <div class="cy-pub-list">
-        <div class="cy-pub-item">
-          <span class="cy-pub-num">1</span>
-          <div class="cy-pub-info">
-            <p class="cy-pub-title"><a href="https://linkinghub.elsevier.com/retrieve/pii/S153458072600033X" target="_blank" rel="noreferrer">Noncanonical open reading frames from lncRNAs encode functional micropeptides that help shape agronomic traits in rice</a></p>
-            <p class="cy-pub-meta"><u class="thick-underline">Cheng, Yu</u><sup>#</sup>; He, Rui-Rui<sup>#</sup>; Jiang, Jie; Yang, Lu; Yuan, Chao; Qin, Yi-Chao; Zhao, Wen-Long; Mo, Wan-Ting; Liao, Yu-Hong; Chen, Zheng-Tong; Feng, Jun-Jie; Pang, Hui-Yin; Cheng, Ye; Lei, Meng-Qi; Zhou, Yan-Fei; Lian, Jian-Ping; Zhang, Yu-Chan; Chen, Yue-Qin<sup>*</sup></p>
-            <p class="cy-pub-journal"><em>Developmental Cell</em>. 2026; 61(4), 919-935.e6</p>
-          </div>
-        </div>
-        <div class="cy-pub-item">
-          <span class="cy-pub-num">2</span>
-          <div class="cy-pub-info">
-            <p class="cy-pub-title"><a href="https://linkinghub.elsevier.com/retrieve/pii/S1674205225001364" target="_blank" rel="noreferrer">The long noncoding RNA VIVIpary promotes seed dormancy release and pre-harvest sprouting through chromatin remodeling in rice</a></p>
-            <p class="cy-pub-meta">Yang, Lu<sup>#</sup>; <u class="thick-underline">Cheng, Yu</u><sup>#</sup>; Yuan, Chao; Zhou, Yan-Fei; Huang, Qiao-Juan; Zhao, Wen-Long; He, Rui-Rui; Jiang, Jie; Qin, Yi-Chao; Chen, Zheng-Tong; Zhang, Yu-Chan; Lei, Meng-Qi<sup>*</sup>; Lian, Jian-Ping<sup>*</sup>; Chen, Yue-Qin<sup>*</sup></p>
-            <p class="cy-pub-journal"><em>Molecular Plant</em>. 2025; 18(6), 978-994</p>
-          </div>
-        </div>
-        <div class="cy-pub-item">
-          <span class="cy-pub-num">3</span>
-          <div class="cy-pub-info">
-            <p class="cy-pub-title"><a href="https://linkinghub.elsevier.com/retrieve/pii/S1674205225003120" target="_blank" rel="noreferrer">Long noncoding RNAs as molecular architects: Shaping plant functions and physiological plasticity</a></p>
-            <p class="cy-pub-meta">Zhang, Yu-Chan<sup>#</sup>; He, Re-Qing<sup>#</sup>; <u class="thick-underline">Cheng, Yu</u><sup>#</sup>; Wang, Dong<sup>*</sup>; Ariel, Federico<sup>*</sup>; Chen, Yue-Qin<sup>*</sup></p>
-            <p class="cy-pub-journal"><em>Molecular Plant</em>. 2025; 18(10), 1643-1671</p>
-          </div>
-        </div>
-        <div class="cy-pub-item">
-          <span class="cy-pub-num">4</span>
-          <div class="cy-pub-info">
-            <p class="cy-pub-title"><a href="https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02608-y" target="_blank" rel="noreferrer">Genome-wide analysis and functional annotation of chromatin-enriched noncoding RNAs in rice during somatic cell regeneration</a></p>
-            <p class="cy-pub-meta">Zhang, Yu-Chan<sup>#</sup>; Zhou, Yan-Fei<sup>#</sup>; <u class="thick-underline">Cheng, Yu</u><sup>#</sup>; Huang, Jia-Hui; Lian, Jian-Ping; Yang, Lu; He, Rui-Rui; Lei, Meng-Qi; Liu, Yu-Wei; Yuan, Chao; Zhao, Wen-Long; Xiao, Shi; Chen, Yue-Qin<sup>*</sup></p>
-            <p class="cy-pub-journal"><em>Genome Biology</em>. 2022; 23(1), 28</p>
-          </div>
-        </div>
-      </div>
-      <p style="font-size: 0.82rem; color: var(--cy-text-secondary); margin-top: 0.75rem;">(# co-first author, * corresponding author)</p>
+      {{ partial "custom/publications.html" (dict "variant" "home") }}
     </section>
 
     <!-- ===== CONTACT ===== -->

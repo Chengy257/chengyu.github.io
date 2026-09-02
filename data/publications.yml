@@ -1,0 +1,78 @@
+# 单一数据源：发表论文（首页「发表论文」区块 与 简历页共用，禁止双份硬编码）
+# 渲染入口：
+#   - 首页:  layouts/hextra-home.html 调 partial custom/publications.html (variant=home)
+#   - 简历:  content/about.md 内 {{< publications >}} → layouts/_shortcodes/publications.html (variant=cv)
+# 字段说明：
+#   authors — 作者行，允许 HTML 标记（<u>/<strong>/<sup>），输出时经 safeHTML；
+#             <sup>#</sup> = 共同一作，<sup>*</sup> = 通讯作者
+#   title / url — 标题与原文链接
+#   journal / meta — 期刊与 "年; 卷(期), 页码" 信息（meta 不带尾随句点）
+#   doi — 可选，DOI 链接
+#   cover — 可选，true 表示封面文章（简历页追加 (Cover Article) 标注）
+# 顺序约定：按年份倒序分组；同组内按重要性排列；编号由模板自动生成（连续）。
+footnote: "(# co-first author, * corresponding author)"
+
+pubs:
+  - year: 2026
+    items:
+      - authors: '<u class="thick-underline"><strong>Cheng, Yu</strong></u><sup>#</sup>; He, Rui-Rui<sup>#</sup>; Jiang, Jie; Yang, Lu; Yuan, Chao; Qin, Yi-Chao; Zhao, Wen-Long; Mo, Wan-Ting; Liao, Yu-Hong; Chen, Zheng-Tong; Feng, Jun-Jie; Pang, Hui-Yin; Cheng, Ye; Lei, Meng-Qi; Zhou, Yan-Fei; Lian, Jian-Ping; Zhang, Yu-Chan; Chen, Yue-Qin<sup>*</sup>'
+        title: "Noncanonical open reading frames from lncRNAs encode functional micropeptides that help shape agronomic traits in rice"
+        url: "https://linkinghub.elsevier.com/retrieve/pii/S153458072600033X"
+        journal: "Developmental Cell"
+        meta: "2026; 61(4), 919-935.e6"
+        doi: "https://doi.org/10.1016/j.devcel.2026.01.010"
+        cover: true
+      - authors: 'Yuan, Chao<sup>#</sup>; Jiang, Jie<sup>#</sup>; <u class="thick-underline"><strong>Cheng, Yu</strong></u>; Lian, Jian-Ping; Liao, Yu-Hong; Yu, Yang; Zhao, Wen-Long; Mo, Wan-Ting; Yang, Jia-Biao; Qin, Yi-Chao; Chen, Zheng-Tong; Yang, Lu; Lei, Meng-Qi; Zhang, Yu-Chan; He, Rui-Rui<sup>*</sup>; Zhou, Yan-Fei<sup>*</sup>; Chen, Yue-Qin<sup>*</sup>'
+        title: "The XSER1 lncRNA acts as an enhancer RNA and confers resistance to pathogens by promoting chromatin loop formation in rice"
+        url: "https://www.cell.com/molecular-cell/abstract/S1097-2765(26)00127-9"
+        journal: "Molecular Cell"
+        meta: "2026; 86(6), 998-1014.e6"
+        doi: "https://doi.org/10.1016/j.molcel.2026.02.013"
+  - year: 2025
+    items:
+      - authors: 'Zhao, Wen-long<sup>#</sup>; Cheng, Ye; Huang, Jia-hui; Feng, Jun-jie; Pang, Hui-yin; Qin, Yi-chao; Chen, Zheng-tong; <u class="thick-underline"><strong>Cheng, Yu</strong></u>; Lian, Jian-ping; Zhou, Yan-fei; He, Rui-rui; Lei, Meng-qi; Cao, Zi-qin; Yang, Lu; Yuan, Chao; Jiang, Jie; Chen, Yue-qin; Zhang, Yu-chan<sup>*</sup>'
+        title: "Gene Editing of a Susceptibility LncRNA Enhances Broad-Spectrum Disease Resistance in Rice without Developmental Trade-Offs"
+        url: "https://advanced.onlinelibrary.wiley.com/doi/10.1002/advs.202505671"
+        journal: "Advanced Science"
+        meta: "2025; 12(47), e05671"
+        doi: "https://doi.org/10.1002/advs.202505671"
+      - authors: 'Zhang, Yu-Chan<sup>#</sup>; He, Re-Qing<sup>#</sup>; <u class="thick-underline"><strong>Cheng, Yu</strong></u><sup>#</sup>; Wang, Dong<sup>*</sup>; Ariel, Federico<sup>*</sup>; Chen, Yue-Qin<sup>*</sup>'
+        title: "Long noncoding RNAs as molecular architects: Shaping plant functions and physiological plasticity"
+        url: "https://linkinghub.elsevier.com/retrieve/pii/S1674205225003120"
+        journal: "Molecular Plant"
+        meta: "2025; 18(10), 1643-1671"
+        doi: "https://doi.org/10.1016/j.molp.2025.09.008"
+      - authors: 'Yang, Lu<sup>#</sup>; <u class="thick-underline"><strong>Cheng, Yu</strong></u><sup>#</sup>; Yuan, Chao; Zhou, Yan-Fei; Huang, Qiao-Juan; Zhao, Wen-Long; He, Rui-Rui; Jiang, Jie; Qin, Yi-Chao; Chen, Zheng-Tong; Zhang, Yu-Chan; Lei, Meng-Qi<sup>*</sup>; Lian, Jian-Ping<sup>*</sup>; Chen, Yue-Qin<sup>*</sup>'
+        title: "The long noncoding RNA VIVIpary promotes seed dormancy release and pre-harvest sprouting through chromatin remodeling in rice"
+        url: "https://linkinghub.elsevier.com/retrieve/pii/S1674205225001364"
+        journal: "Molecular Plant"
+        meta: "2025; 18(6), 978-994"
+        doi: "https://doi.org/10.1016/j.molp.2025.04.010"
+      - authors: 'Lei, Meng-Qi<sup>#</sup>; He, Rui-Rui<sup>#</sup>; Zhou, Yan-Fei<sup>#</sup>; Yang, Lu; Yuan, Chao; Zhao, Wen-Long; <u class="thick-underline"><strong>Cheng, Yu</strong></u>; Lian, Jian-Ping; Zhang, Yu-Chan; Wang, Wen-Tao; Yu, Yang<sup>*</sup>; Chen, Yue-Qin<sup>*</sup>'
+        title: "The long noncoding RNA ALEX1 confers a functional phase state of ARF3 to enhance rice resistance to bacterial pathogens"
+        url: "https://linkinghub.elsevier.com/retrieve/pii/S1674205224003897"
+        journal: "Molecular Plant"
+        meta: "2025; 18(1), 114-129"
+        doi: "https://doi.org/10.1016/j.molp.2024.12.005"
+  - year: 2022
+    items:
+      - authors: 'Zhang, Yu-Chan<sup>#</sup>; Zhou, Yan-Fei<sup>#</sup>; <u class="thick-underline"><strong>Cheng, Yu</strong></u><sup>#</sup>; Huang, Jia-Hui; Lian, Jian-Ping; Yang, Lu; He, Rui-Rui; Lei, Meng-Qi; Liu, Yu-Wei; Yuan, Chao; Zhao, Wen-Long; Xiao, Shi; Chen, Yue-Qin<sup>*</sup>'
+        title: "Genome-wide analysis and functional annotation of chromatin-enriched noncoding RNAs in rice during somatic cell regeneration"
+        url: "https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02608-y"
+        journal: "Genome Biology"
+        meta: "2022; 23(1), 28"
+        doi: "https://doi.org/10.1186/s13059-022-02608-y"
+  - year: 2021
+    items:
+      - authors: 'Zhou, Yan-Fei<sup>#</sup>; Zhang, Yu-Chan<sup>#</sup>; Sun, Yu-Meng<sup>#</sup>; Yu, Yang; Lei, Meng-Qi; Yang, Yu-Wei; Lian, Jian-Ping; Feng, Yan-Zhao; Zhang, Zhi; Yang, Lu; He, Rui-Rui; Huang, Jia-Hui; <u class="thick-underline"><strong>Cheng, Yu</strong></u>; Liu, Yu-Wei; Chen, Yue-Qin<sup>*</sup>'
+        title: "The parent-of-origin lncRNA MISSEN regulates rice endosperm development"
+        url: "https://www.nature.com/articles/s41467-021-26795-7"
+        journal: "Nature Communications"
+        meta: "2021; 12(1), 6525"
+        doi: "https://doi.org/10.1038/s41467-021-26795-7"
+      - authors: 'Lian, Jian-Ping<sup>#</sup>; Yang, Yu-Wei<sup>#</sup>; He, Rui-Rui; Yang, Lu; Zhou, Yan-Fei; Lei, Meng-Qi; Zhang, Zhi; Huang, Jia-Hui; <u class="thick-underline"><strong>Cheng, Yu</strong></u>; Liu, Yu-Wei; Zhang, Yu-Chan<sup>*</sup>; Chen, Yue-Qin<sup>*</sup>'
+        title: "Ubiquitin-dependent Argonaute protein MEL1 degradation is essential for rice sporogenesis and phasiRNA target regulation"
+        url: "https://academic.oup.com/plcell/article/33/8/2685/6277900"
+        journal: "The Plant Cell"
+        meta: "2021; 33(8), 2685-2700"
+        doi: "https://doi.org/10.1093/plcell/koab138"

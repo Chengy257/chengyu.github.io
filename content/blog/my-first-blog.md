@@ -1,6 +1,6 @@
 ---
 title: "第一篇博客"
-summary: "博客测试文章，验证 Hugo + PaperMod 部署。"
+summary: "博客早期测试文章（站点当时基于 PaperMod，现已迁移至 Hugo + Hextra）。"
 date: 2022-04-16
 draft: false
 tags: ["测试"]

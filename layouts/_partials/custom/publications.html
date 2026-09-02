@@ -1,0 +1,49 @@
+{{- /* ============================================================
+  发表论文 — 单一数据源渲染（数据：data/publications.yml）
+  variant:
+    home — 首页「发表论文」区块（.cy-pub-list 卡片式，模板连续编号 1..N）
+    cv   — 简历页（每年份 <h3> + <ol>；序号由 layouts/_default/cv.html
+           内 CSS counter(pub-counter) 连续生成，勿改动 <ol>/<p> 结构）
+  注意：cv 变体保持 li > p(作者/标题/期刊) 的 p:nth-child 顺序，
+        cv.html 的样式选择器依赖该顺序。
+  ============================================================ */ -}}
+{{- $variant := .variant | default "cv" -}}
+{{- $footnote := site.Data.publications.footnote | default "" -}}
+
+{{- if eq $variant "home" -}}
+  <div class="cy-pub-list">
+    {{- $n := 0 -}}
+    {{- range site.Data.publications.pubs -}}
+      {{- range .items -}}
+        {{- $n = add $n 1 -}}
+        <div class="cy-pub-item">
+          <span class="cy-pub-num">{{ $n }}</span>
+          <div class="cy-pub-info">
+            <p class="cy-pub-title"><a href="{{ .url }}" target="_blank" rel="noreferrer">{{ .title }}</a></p>
+            <p class="cy-pub-meta">{{ .authors | safeHTML }}</p>
+            <p class="cy-pub-journal"><em>{{ .journal }}</em>{{ with .meta }}. {{ . }}{{ end }}</p>
+          </div>
+        </div>
+      {{- end -}}
+    {{- end -}}
+  </div>
+  {{- with $footnote -}}
+    <p style="font-size: 0.82rem; color: var(--cy-text-secondary); margin-top: 0.75rem;">({{ . }})</p>
+  {{- end -}}
+{{- else -}}
+  {{- range site.Data.publications.pubs -}}
+    <h3>{{ .year }}</h3>
+    <ol>
+      {{- range .items -}}
+        <li>
+          <p>{{ .authors | safeHTML }}</p>
+          <p><a href="{{ .url }}" target="_blank" rel="noreferrer">{{ .title }}</a></p>
+          <p><em>{{ .journal }}</em>{{ with .meta }}. {{ . }}{{ end }}{{ with .doi }}. <a href="{{ . }}" target="_blank" rel="noreferrer">{{ . }}</a>{{ end }}{{ if .cover }} (<strong>Cover Article</strong>){{ end }}.</p>
+        </li>
+      {{- end -}}
+    </ol>
+  {{- end -}}
+  {{- with $footnote -}}
+    <p style="text-align: right;">{{ . }}</p>
+  {{- end -}}
+{{- end -}}
