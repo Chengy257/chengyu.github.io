@@ -6,8 +6,6 @@ draft: false
 tags: ["Git", "GitHub", "版本控制"]
 categories: ["工具使用"]
 author: "Cy257"
-showToc: true
-TocOpen: false
 ---
 
 Git 是日常开发中最常用的版本控制工具。本文整理了从仓库初始化到分支管理、远程同步的常用命令，方便随时查阅。

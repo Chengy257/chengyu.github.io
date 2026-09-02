@@ -6,8 +6,6 @@ draft: false
 tags: ["Peak", "BED", "ChIP-seq", "ATAC-seq", "数据格式"]
 categories: ["生信基础"]
 author: "Cy257"
-showToc: true
-TocOpen: false
 ---
 
 ## 背景

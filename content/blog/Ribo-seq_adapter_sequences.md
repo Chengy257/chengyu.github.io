@@ -6,8 +6,6 @@ draft: false
 tags: ["Ribo-seq", "生信分析", "Cutadapt"]
 categories: ["NGS分析"]
 author: "Cy257"
-showToc: true
-TocOpen: false
 ---
 
 > 整理日期：2026-06-03

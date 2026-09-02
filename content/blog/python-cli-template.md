@@ -6,8 +6,6 @@ draft: false
 tags: ["Python", "argparse", "CLI"]
 categories: ["工具开发"]
 author: "Cy257"
-showToc: true
-TocOpen: false
 ---
 
 ## 脚本规范

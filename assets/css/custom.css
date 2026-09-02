@@ -116,13 +116,6 @@
   background-clip: text;
 }
 
-.cy-hero-sub {
-  font-size: 1.15rem;
-  font-weight: 600;
-  color: var(--cy-text-secondary);
-  letter-spacing: -0.01em;
-}
-
 .cy-hero-desc {
   font-size: 1.08rem;
   line-height: 1.75;
@@ -319,23 +312,6 @@
   line-height: 1.5;
 }
 
-.cy-placeholder {
-  font-size: 0.85rem;
-  color: var(--cy-text-muted);
-  margin: 0.5rem 0 0;
-  padding: 0.5rem 0.75rem;
-  background: var(--cy-bg-section);
-  border-radius: 6px;
-  text-align: center;
-}
-
-.cy-placeholder code {
-  font-size: 0.8rem;
-  background: var(--cy-accent-bg);
-  padding: 0.1rem 0.35rem;
-  border-radius: 4px;
-}
-
 /* ---------- Research Areas ---------- */
 .cy-research {
   margin-bottom: 2rem;
@@ -359,7 +335,6 @@
 @media (max-width: 600px) {
   .cy-card-grid { grid-template-columns: 1fr; }
   .cy-hero-title { font-size: 1.6rem; }
-  .cy-hero-sub { font-size: 1rem; }
   .cy-about-intro { flex-direction: column; }
 }
 
@@ -405,16 +380,6 @@
 /* ---------- Skills ---------- */
 .cy-skills {
   margin-bottom: 0.5rem;
-}
-
-.cy-skill-group {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 1.25rem;
-}
-
-@media (max-width: 700px) {
-  .cy-skill-group { grid-template-columns: 1fr; }
 }
 
 /* --- Research interest card (single card, numbered list) --- */
@@ -475,44 +440,6 @@
   color: var(--cy-text-secondary);
   line-height: 1.6;
   margin: 0;
-}
-
-.cy-skill-category {
-  background: var(--cy-bg-card);
-  border: 1px solid var(--cy-border);
-  border-radius: var(--cy-radius);
-  padding: 1.1rem 1.25rem;
-}
-
-.cy-skill-cat-name {
-  display: block;
-  font-size: 0.98rem;
-  font-weight: 700;
-  color: var(--cy-text);
-  margin-bottom: 0.4rem;
-}
-
-.cy-skill-desc {
-  font-size: 0.92rem;
-  color: var(--cy-text-secondary);
-  line-height: 1.6;
-  margin: 0;
-}
-
-.cy-skill-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-}
-
-.cy-skill {
-  font-size: 0.8rem;
-  font-weight: 500;
-  padding: 0.25rem 0.65rem;
-  border-radius: 6px;
-  background: var(--cy-accent-bg);
-  color: var(--cy-text-secondary);
-  border: 1px solid var(--cy-border);
 }
 
 /* ---------- Post Grid ---------- */
@@ -657,10 +584,6 @@
   height: 10px;
   border-radius: 50%;
 }
-
-.cy-dot-python { background: #3572A5; }
-.cy-dot-r { background: #198CE7; }
-.cy-dot-html { background: #e34c26; }
 
 /* Repo card as clickable link */
 a.cy-repo-link {

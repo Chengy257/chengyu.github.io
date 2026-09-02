@@ -6,8 +6,6 @@ draft: false
 tags: ["JCVI", "MCscan", "共线性", "比较基因组学", "基因组进化"]
 categories: ["NGS分析"]
 author: "Cy257"
-showToc: true
-TocOpen: false
 ---
 
 ## 背景

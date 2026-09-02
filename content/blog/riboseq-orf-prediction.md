@@ -6,8 +6,6 @@ draft: false
 tags: ["Ribo-seq", "ORF", "翻译预测", "工具对比"]
 categories: ["NGS分析"]
 author: "Cy257"
-showToc: true
-TocOpen: false
 ---
 
 # Ribo-seq 翻译 ORF 预测工具全攻略

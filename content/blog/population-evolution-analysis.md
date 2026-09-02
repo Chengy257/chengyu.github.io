@@ -6,8 +6,6 @@ draft: false
 tags: ["群体遗传", "vcftools", "plink", "Tajima's D", "Fst", "π"]
 categories: ["NGS分析"]
 author: "Cy257"
-showToc: true
-TocOpen: false
 ---
 
 群体进化分析中，核苷酸多样性（π）、群体分化系数（Fst）和中性检验（Tajima's D）是三个最常用的遗传多样性指标。本文以水稻 Rice4K SNP 数据为例，记录如何使用 vcftools 和 plink 计算这些指标，并利用 ggplot2 进行基因组区域的可视化。

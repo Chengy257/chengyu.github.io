@@ -6,8 +6,6 @@ draft: false
 tags: ["Agent", "工具开发", 开源","ZCode","GLM"]
 categories: ["工具开发"]
 author: "Cy257"
-showToc: true
-TocOpen: false
 ---
 
 # GLM Conductor：面向 ZCode 的 GLM 双模型选择性 Agent 编排插件

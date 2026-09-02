@@ -6,8 +6,6 @@ draft: false
 tags: ["WGCNA", "R", "共表达网络", "转录组", "加权基因网络"]
 categories: ["NGS分析"]
 author: "Cy257"
-showToc: true
-TocOpen: false
 ---
 
 ## 什么是 WGCNA？

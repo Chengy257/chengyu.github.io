@@ -6,8 +6,6 @@ draft: false
 tags: ["R", "ggplot2", "绘图", "数据可视化", "ggsci"]
 categories: ["R绘图"]
 author: "Cy257"
-showToc: true
-TocOpen: false
 ---
 
 常用的 ggplot2 图表代码整理，方便自己以后查阅。每个代码块尽量保持自包含，复制修改数据名就能直接跑。

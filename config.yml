@@ -96,12 +96,9 @@ params:
     displayToggle: true
 
   page:
-    displayPagination: true
     width: normal
 
   blog:
-    list:
-      displayTags: true
     article:
       displayPagination: true
 
@@ -116,16 +113,10 @@ params:
 
   search:
     flexsearch:
-      js: "js/flexsearch.bundle.debug.js"
+      js: "js/flexsearch.bundle.min.js"
 
   imageZoom:
     enable: false
-
-  favicon: "/img/favicon.ico"
-
-  # 社交链接（Hextra footer area）
-  social:
-    github: "Chengy257"
 
 # ---------- 分类法 ----------
 taxonomies:

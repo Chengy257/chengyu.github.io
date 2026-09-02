@@ -6,8 +6,6 @@ draft: false
 tags: ["GWAS", "PLINK", "GEMMA", "EMMAX", "TWAS", "全基因组关联分析"]
 categories: ["NGS分析"]
 author: "Cy257"
-showToc: true
-TocOpen: false
 ---
 
 ## 背景

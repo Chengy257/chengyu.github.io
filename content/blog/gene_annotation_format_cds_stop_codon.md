@@ -6,8 +6,6 @@ draft: false
 tags: ["生信分析", "基因组注释", "GTF", "stop-codon"]
 categories: ["NGS分析"]
 author: "Cy257"
-showToc: true
-TocOpen: false
 
 ---
 

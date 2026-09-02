@@ -6,8 +6,6 @@ draft: false
 tags: ["RNA-seq", "DESeq2", "NGS", "差异表达"]
 categories: ["NGS分析"]
 author: "Cy257"
-showToc: true
-TocOpen: false
 cover:
   image: ""
   alt: ""

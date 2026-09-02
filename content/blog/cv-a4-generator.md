@@ -6,8 +6,6 @@ draft: false
 tags: ["Python", "工具开发", "简历", "开源"]
 categories: ["工具开发"]
 author: "Cy257"
-showToc: true
-TocOpen: false
 ---
 
 ## 背景
