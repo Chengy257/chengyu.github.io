@@ -1,0 +1,68 @@
+name: Site audit
+
+# 每周一自动巡检；也可手动触发（Actions 页 → Site audit → Run workflow）
+on:
+  schedule:
+    - cron: "23 2 * * 1" # 周一 02:23 UTC（北京时间 10:23）
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  dead-links:
+    name: Dead link check (lychee)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "0.165.0" # 与 CI 部署版本严格一致（AGENTS.md §4）
+          extended: true
+
+      - name: Build site
+        run: HUGO_ENVIRONMENT=production hugo --minify --gc --cleanDestinationDir
+        env:
+          TZ: Asia/Shanghai
+          HUGO_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Check links (lychee)
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --verbose
+            --no-progress
+            --max-retries 2
+            --exclude 'localhost'
+            --exclude '127\.0\.0\.1'
+            './public/**/*.html'
+          format: markdown
+          output: ./lychee-report.md
+          fail: true
+
+      - name: Upload lychee report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lychee-report
+          path: lychee-report.md
+
+  lighthouse:
+    name: Lighthouse (live site)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Audit live pages
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: |
+            https://chengy257.github.io/chengyu.github.io/
+            https://chengy257.github.io/chengyu.github.io/blog/
+            https://chengy257.github.io/chengyu.github.io/about/
+          uploadArtifacts: true
+          artifactName: lighthouse-reports

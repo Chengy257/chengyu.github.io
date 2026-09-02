@@ -3,6 +3,8 @@ title: "Clash Verge TUN 分流： AI 专用静态 ISP 代理配置记录"
 summary: "记录 Codex/AI 服务在 TUN 模式下连接不稳的排查过程，并给出为 AI 服务单独建立静态 ISP 代理通道的 Clash Verge 配置方案。"
 date: 2026-06-11
 draft: false
+slug: "clash-tun-ai-static-isp"
+aliases: ["/blog/clash_tun_ai_static_isp/"]
 tags: [Clash Verge, TUN, Codex, OpenAI, Static ISP, SOCKS5, GitHub, Bing]
 ---
 

@@ -3,6 +3,8 @@ title: "基因组注释格式的差异 —— CDS 边界问题"
 summary: " 从一个 CDS 边界问题看基因组注释格式的差异：GTF、GFF3、BED 与 genePred 的一些记录"
 date: 2026-06-03
 draft: false
+slug: "gene-annotation-format-cds-stop-codon"
+aliases: ["/blog/gene_annotation_format_cds_stop_codon/"]
 tags: ["生信分析", "基因组注释", "GTF", "stop-codon"]
 categories: ["NGS分析"]
 author: "Cy257"
@@ -156,7 +158,7 @@ genePred/refFlat 比 BED12 更结构化，可以按 transcript 一行保存 exon
 
 这个问题并不是个例。UCSC 早期 FAQ 中就曾经提到，不同 gene annotation sets 对 stop codon 的处理历史上并不一致：GTF2 格式不把 stop codon 包含在 terminal exon 的 CDS 中，而 GenBank 格式会包含 stop codon；GFF 本身过去又没有把这个问题规定得足够清楚。
 
-<img src="https://raw.githubusercontent.com/Chengy257/img-file-bed/main/test/image-20260603015959699.png" alt="image-20260603015959699" style="zoom: 40%;" />
+{{< img src="images/posts/gene-annotation-cds-boundary.png" alt="CDS 边界差异示例：GTF 与 GFF3 注释对比" width="2483" height="615" >}}
 
 AGAT 文档也专门整理过 GFF/GTF 的历史和各种格式“flavor”。它提到，GTF/GFF 格式变体很多，许多工具会因为对格式有特定预期而解析失败。这一点和实际项目中遇到的情况高度一致：文件扩展名看起来一样，但第 9 列属性、feature 层级、CDS/stop codon 定义、phase 字段都可能有细微差别。
 

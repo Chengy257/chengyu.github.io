@@ -1,0 +1,11 @@
+{{- /* 本地图引用：{{< img src="images/posts/x.png" alt="说明" width="1630" height="482" >}}
+     src 走 relURL（兼容 baseURL 子路径），默认 lazy + 响应式缩放。 */ -}}
+{{- $src := .Get "src" -}}
+{{- $alt := .Get "alt" | default "" -}}
+<img src="{{ $src | relURL }}"
+  alt="{{ $alt }}"
+  loading="lazy"
+  decoding="async"
+  {{- with .Get "width" }} width="{{ . }}"{{ end -}}
+  {{- with .Get "height" }} height="{{ . }}"{{ end -}}
+  style="max-width: 100%; height: auto;" />

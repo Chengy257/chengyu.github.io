@@ -13,6 +13,9 @@
 
 ## 2. 开发环境（硬约束）
 
+> **注意**：本节正文记录的是 **DSH 远程会话机**（另一台机器）的环境；当前维护所用机器的环境见本节末尾
+> 「**本机环境（Windows + WSL Ubuntu-24.04）**」小节，两套记录不可混用（仓库路径、发行版、认证方式均不同）。
+
 所有 git / hugo / gh 命令必须在**本机 WSL** 内执行，Windows 侧仅作文件宿主：
 
 - 仓库路径：`/mnt/f/MyBlog/chengyu.github.io`；发行版：`Ubuntu-18.04`（WSL2，glibc 实测 2.35——曾就地升级，新版 Hugo 可运行）
@@ -36,6 +39,17 @@ hugo server -D --bind 0.0.0.0
 ./git_sync.sh "commit message"
 ```
 
+### 本机环境（Windows + WSL Ubuntu-24.04，2026-09-03 实测记录）
+
+- 仓库路径：Windows 侧 `C:\Lab\chengyu.github.io`，WSL 内为 `/mnt/c/Lab/chengyu.github.io`；本机**不存在** `/mnt/f`（上文 `/mnt/f/MyBlog` 为 DSH 机器专属路径）
+- 发行版：`Ubuntu-24.04`（WSL2，默认发行版，用户 `chengyu`）。Hugo 已升级至 **0.165.0** extended（`~/.local/bin/hugo`，与 CI 一致；原 0.147.4 已被覆盖）。构建命令同 §2，`cd /mnt/c/Lab/chengyu.github.io` 后执行
+- git 认证：本机 `~/.ssh/id_ed25519` **未被 GitHub 接受**（SSH 拉取/推送均失败）；`origin` 已改用 **HTTPS**，fetch/push 走 gh CLI 凭据助手（gh v2.98.0，账号 `Chengy257`，keyring 存储）。认证失效时用 `gh auth login --web` 重新登录，勿改回 SSH
+- Windows 侧 Git Bash 对本仓库**可用**（无 §2 所述 dubious ownership 问题，该约束仅针对 DSH 机器）；但 **Hugo 构建仍在 WSL 内执行**，保证与 CI 同版本
+- **CRLF 陷阱（本机已踩过）**：Windows git `core.autocrlf=true` 会把 hextra 子模块检出为 CRLF（其 `.gitattributes` 无 eol 规则），Hugo 0.165 解析含 `{{/* … */}}` 注释的模板会直接报 `comment ends before closing delimiter`。已修复：子模块本地设置 `core.autocrlf=false` + `core.eol=lf` 并归一化行尾。本机重装/更新子模块后若构建再报此错，按同样方式处理
+- 子模块内 `CLAUDE.md` 是**上游 hextra 跟踪的符号链接**（→ AGENTS.md），由 WSL 侧工具创建，Windows git 无法读取而恒报 modified：已用本地 `git -C themes/hextra update-index --assume-unchanged CLAUDE.md` 屏蔽（仅本地索引标志，不改上游内容）；索引重建（`read-tree`/`reset`）后若 M 复现，重新执行该命令即可，**勿删除或改写该链接**
+- 与远端无关的本地散落文件（文章草稿、简历 txt 等）不放仓库根目录：已移至仓库外 `C:\Lab\blog-local-archive\` 归档，新同类文件照此办理
+- 日常检查基线：`git status`（父仓库与子模块）应保持全绿
+
 ## 3. 分支与发布纪律
 
 - **唯一开发/部署分支：`source`**。远端默认分支已是 `source`；`main` 已删除，禁止重建。
@@ -57,7 +71,8 @@ hugo server -D --bind 0.0.0.0
 
 ## 5. 内容约定（写文章/改简历必读）
 
-- front matter 标准字段：`title / summary / date / draft / tags / categories`。**summary 必填**（首页卡片展示）；新文章默认经 `hugo new`（archetype 含 draft:true）。
+- front matter 标准字段：`title / summary / date / draft / tags / categories`。**summary 必填**（首页卡片展示）；新文章默认经 `hugo new`（archetype 含 draft:true）。**summary 质量线**：须概括文章方法与产出，不得与标题雷同、不得以逗号等标点悬空结尾，占位式 summary 视同缺失。
+- 内容图片引用统一用 `img` shortcode：`{{< img src="images/posts/x.png" alt="说明" width="1630" height="482" >}}`（自动 relURL + lazy + 响应式），源图存 `static/images/posts/`；改文件名时同步 `slug`/`aliases` 规则（URL 一律小写连字符，旧 URL 写入 aliases）。
 - 禁止引入 PaperMod 遗留字段（`showToc`、`TocOpen` 等，Hextra 不识别）；文章目录控制用页面参数 `toc: false/true`。
 - **单一数据源**（双处展示的内容只改数据文件，禁止双份硬编码）：
   - 论文 → `data/publications.yml`（首页「发表论文」与简历页共用）
@@ -66,6 +81,8 @@ hugo server -D --bind 0.0.0.0
 - 自由文本例外：`content/about.md` 的「基本信息」「专业技能」段落与首页顶部欢迎语/技能卡片为各自语境定制文本，允许表述不同（改动时注意两处同步）。
 - 时区陷阱：`timeZone: Asia/Shanghai`，给文章配未来日期会导致 `buildFuture: false` 下不渲染。
 - 图片放 `static/images/`，引用走 `relURL`。
+- **博客侧不使用真实人物照片**（所有者 2026-09 明确要求）：照片仅用于简历页；博客 hero/头像/og 图一律用图标、monogram 或插画。
+- **简历页保持原深蓝主题**（所有者 2026-09-03 反馈绿色太艳，已从绿回退蓝）：站点为「博客绿 / 简历蓝」双配色，这是有意为之，勿再强行统一。`layouts/_default/cv-classic.html` 为原样封存副本（当前与 cv.html 同源），改简历页只动 `cv.html`，经 `content/about.md` 的 `layout:` 可切回。站点优化总清单见根目录 `OPTIMIZATION-PLAN.md`。
 
 ## 6. 首页 GitHub 卡片（hextra-home.html）行为说明
 

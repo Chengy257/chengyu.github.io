@@ -14,8 +14,10 @@
         <div class="hx:mt-4 hx:mb-16 hx:text-gray-500 hx:dark:text-gray-400 hx:text-sm hx:flex hx:items-center hx:flex-wrap hx:gap-y-2">
           {{- with $date := .Date }}<span class="hx:mr-1">{{ partial "utils/format-date" $date }}</span>{{ end -}}
           {{- $lazyLoading := site.Params.enableImageLazyLoading | default true -}}
-          {{ if and .Date .Params.authors }}<span class="hx:mx-1">·</span>{{ end -}}
-          {{- with $.Params.authors -}}
+          {{- $authors := .Params.authors -}}
+          {{- if not $authors }}{{ with .Params.author }}{{ $authors = slice . }}{{ end }}{{ end -}}
+          {{ if and .Date $authors }}<span class="hx:mx-1">·</span>{{ end -}}
+          {{- with $authors -}}
             {{- range $i, $author := . -}}
               {{- if reflect.IsMap $author -}}
                 {{- if and $i (not $author.image) }}<span class="hx:mr-1">,</span>{{ end -}}
@@ -39,6 +41,7 @@
               {{- end -}}
             {{- end -}}
           {{- end -}}
+          {{- if gt .ReadingTime 0 }}<span class="hx:mx-1">·</span><span class="hx:whitespace-nowrap">约 {{ .ReadingTime }} 分钟读完</span>{{ end -}}
         </div>
         <div class="content">
           {{ .Content }}
@@ -48,6 +51,26 @@
           {{- .Store.Set "reversePagination" (.Params.reversePagination | default true) -}}
           {{- partial "components/pager.html" . -}}
         {{ end }}
+        {{- $related := site.RegularPages.Related . | first 3 -}}
+        {{- with $related -}}
+        <section class="cy-related">
+          <h2 class="cy-related-title">相关文章</h2>
+          <div class="cy-related-grid">
+            {{ range . }}
+            <a href="{{ .RelPermalink }}" class="cy-post-card">
+              <div class="cy-post-card-body">
+                <span class="cy-post-date">{{ .Date.Format "2006-01-02" }}</span>
+                <h3 class="cy-post-title">{{ .Title }}</h3>
+                <p class="cy-post-summary">{{ .Params.summary | default .Description | default "" }}</p>
+              </div>
+              <div class="cy-post-tags">
+                {{ range first 3 .Params.tags }}<span class="cy-tag">{{ . }}</span>{{ end }}
+              </div>
+            </a>
+            {{ end }}
+          </div>
+        </section>
+        {{- end -}}
         {{- partial "components/comments.html" . -}}
       </main>
     </article>

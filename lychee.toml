@@ -1,0 +1,13 @@
+# lychee 死链检查配置（Site audit 工作流使用）
+# 学术出版社站点对爬虫普遍返回 403（Cloudflare 拦截），属误报，排除；
+# 这些 DOI 链接的稳定性由出版方保证。
+exclude = [
+  "linkinghub\\.elsevier\\.com",
+  "www\\.cell\\.com",
+  "advanced\\.onlinelibrary\\.wiley\\.com",
+  "academic\\.oup\\.com",
+  "genomebiology\\.biomedcentral\\.com",
+  "www\\.nature\\.com",
+  "www\\.science\\.org",
+]
+max_retries = 2

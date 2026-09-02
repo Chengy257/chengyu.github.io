@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0e2f21"/>
+      <stop offset="0.55" stop-color="#1a5c3f"/>
+      <stop offset="1" stop-color="#28765a"/>
+    </linearGradient>
+    <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#28765a"/>
+      <stop offset="1" stop-color="#3a9e75"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1080" cy="90" r="220" fill="#ffffff" opacity="0.04"/>
+  <circle cx="120" cy="580" r="180" fill="#ffffff" opacity="0.04"/>
+  <rect x="90" y="200" width="120" height="120" rx="28" fill="url(#tile)"/>
+  <text x="150" y="279" text-anchor="middle" font-family="Arial, 'Segoe UI', 'Microsoft YaHei', sans-serif" font-size="50" font-weight="800" fill="#ffffff">CY</text>
+  <text x="250" y="270" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif" font-size="64" font-weight="800" fill="#ffffff">Cy257's Blog</text>
+  <text x="250" y="330" font-family="'Microsoft YaHei', 'Segoe UI', sans-serif" font-size="30" fill="#a7f3d0">生物信息学 · NGS 数据分析 · 流程工具开发</text>
+  <text x="90" y="520" font-family="'Segoe UI', sans-serif" font-size="26" fill="#d1fae5" opacity="0.85">github.com/Chengy257</text>
+  <circle cx="66" cy="512" r="5" fill="#a7f3d0"/>
+</svg>

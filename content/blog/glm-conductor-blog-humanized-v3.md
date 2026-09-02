@@ -3,7 +3,7 @@ title: "GLM Conductor：面向 GLM 双模型/ZCode 的选择性 Agent 编排插�
 summary: "GLM Conductor 是一个面向 ZCode 和 GLM Coding Plan 的选择性 Agent 编排插件。它利用 ZCode 已有的 Subagent、Hook、Automation 与长程任务能力，在其上增加针对 GLM-5.3 / GLM-5.3-Flash 双模型体系的路由策略、任务状态、证据约束和额度感知连续性。"
 date: 2026-09-01
 draft: false
-tags: ["Agent", "工具开发", 开源","ZCode","GLM"]
+tags: ["Agent", "工具开发", "开源", "ZCode", "GLM"]
 categories: ["工具开发"]
 author: "Cy257"
 ---

@@ -66,70 +66,138 @@
   --cy-bg-section: #111827;
 }
 
-/* ---------- Hero ---------- */
+/* ---------- Hero（浅绿渐变圆角面板，内容居中，头像+标题并排） ---------- */
 .cy-hero {
   max-width: var(--cy-max-width);
   margin: 0 auto;
-  padding: 4rem 1.5rem 2rem;
+  padding: 3rem 1.5rem 2rem;
 }
 
-.cy-hero-inner {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+.cy-hero-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  padding: 3.25rem 2.5rem 3rem;
+  background:
+    radial-gradient(42rem 20rem at 86% -18%, rgba(58, 158, 117, 0.06), transparent 60%),
+    linear-gradient(135deg, #fcfefd 0%, #f5faf7 52%, #edf5f0 100%);
+  border: 1px solid transparent;
+  box-shadow: 0 12px 32px rgba(26, 92, 63, 0.05);
 }
 
-.cy-hero-text {
+.cy-hero-card-deco {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.cy-hero-card-deco::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(26, 92, 63, 0.06) 1px, transparent 1.4px);
+  background-size: 22px 22px;
+  -webkit-mask-image: radial-gradient(34rem 16rem at 84% 0%, #000 0%, transparent 70%);
+          mask-image: radial-gradient(34rem 16rem at 84% 0%, #000 0%, transparent 70%);
+}
+
+.cy-hero-card-deco::after {
+  content: "";
+  position: absolute;
+  width: 18rem;
+  height: 18rem;
+  border-radius: 50%;
+  right: -5rem;
+  bottom: -8rem;
+  background: rgba(58, 158, 117, 0.05);
+}
+
+.cy-hero-card-inner {
+  position: relative;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  text-align: center;
 }
 
 .cy-hero-badge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.55rem;
   width: fit-content;
-  font-size: 0.92rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--cy-accent);
-  background: var(--cy-accent-bg);
-  border: 1px solid var(--cy-accent);
+  background: rgba(255, 255, 255, 0.55);
   border-radius: 9999px;
-  padding: 0.35rem 1rem;
+  padding: 0.34rem 0.95rem;
+}
+
+.cy-hero-badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--cy-accent);
+  box-shadow: 0 0 0 3px rgba(26, 92, 63, 0.12);
 }
 
 .cy-hero-title {
-  font-size: 2rem;
+  font-size: clamp(1.9rem, 1.2rem + 2.6vw, 2.6rem);
   font-weight: 800;
-  line-height: 1.3;
+  line-height: 1.22;
   letter-spacing: -0.03em;
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
 }
 
 .cy-gradient {
-  background: linear-gradient(135deg, #1a5c3f 0%, #28765a 50%, #3a9e75 100%);
+  background: linear-gradient(135deg, #14523a 0%, #1f6e4e 55%, #2b8f66 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .cy-hero-desc {
-  font-size: 1.08rem;
+  font-size: 1.05rem;
   line-height: 1.75;
   color: var(--cy-text-secondary);
-  max-width: 42rem;
-  margin: 0 auto;
-  text-align: center;
+  max-width: 36rem;
+  margin: 0;
 }
 
 .cy-hero-actions {
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
   flex-wrap: wrap;
-  margin-top: 0.25rem;
+  justify-content: center;
+  margin-top: 0.35rem;
+}
+
+/* 入场动画（尊重系统减少动效设置） */
+@media (prefers-reduced-motion: no-preference) {
+  .cy-hero-card-inner > * {
+    animation: cy-fade-up 0.55s ease backwards;
+  }
+
+  .cy-hero-card-inner > *:nth-child(2) { animation-delay: 0.08s; }
+  .cy-hero-card-inner > *:nth-child(3) { animation-delay: 0.16s; }
+  .cy-hero-card-inner > *:nth-child(4) { animation-delay: 0.24s; }
+}
+
+@keyframes cy-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ---------- Buttons ---------- */
@@ -334,7 +402,6 @@
 
 @media (max-width: 600px) {
   .cy-card-grid { grid-template-columns: 1fr; }
-  .cy-hero-title { font-size: 1.6rem; }
   .cy-about-intro { flex-direction: column; }
 }
 
@@ -595,6 +662,13 @@ a.cy-repo-link {
 a.cy-repo-link:hover {
   border-color: var(--cy-accent);
   box-shadow: 0 2px 8px rgba(26, 92, 63, 0.1);
+  transform: translateY(-2px);
+}
+
+a.cy-repo-link:focus-visible,
+.cy-post-card:focus-visible {
+  outline: 2px solid var(--cy-accent-light);
+  outline-offset: 2px;
 }
 
 /* ---------- Publications ---------- */
@@ -995,4 +1069,168 @@ article main#content h1 {
   height: 1px !important;
   background: linear-gradient(to right, transparent, var(--cy-border), transparent) !important;
   margin: 2rem 0 !important;
+}
+
+/* ===================================================================
+   Phase 2 (2026-09) — Hero identity · theme hue alignment · dark contrast
+   =================================================================== */
+
+/* --- Hero identity: monogram + title 并排（浅色面板内） --- */
+.cy-hero-id {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.cy-hero-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 20px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: linear-gradient(135deg, #1a5c3f 0%, #28765a 55%, #3a9e75 100%);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.85), 0 12px 26px rgba(26, 92, 63, 0.28);
+  transition: transform 0.3s ease;
+}
+
+.cy-hero-avatar:hover {
+  transform: translateY(-3px) rotate(-3deg);
+}
+
+@media (max-width: 640px) {
+  .cy-hero-card {
+    padding: 2.4rem 1.25rem 2.2rem;
+    border-radius: 18px;
+  }
+
+  .cy-hero-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 15px;
+    font-size: 1.15rem;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.85), 0 8px 18px rgba(26, 92, 63, 0.25);
+  }
+
+  .cy-hero-id {
+    gap: 0.9rem;
+  }
+}
+
+/* --- Theme primary hue: align Hextra primary scale with brand green --- */
+:root {
+  --primary-hue: 152deg;
+  --primary-saturation: 48%;
+}
+
+.dark {
+  --primary-hue: 152deg;
+  --primary-saturation: 54%;
+}
+
+/* --- Dark-mode contrast (>= WCAG AA) --- */
+.dark {
+  --cy-text-muted: #98a2b3;
+  --cy-text-secondary: #a8b1bd;
+}
+
+.dark .cy-tag {
+  color: #7ce3bb;
+  background: rgba(52, 211, 153, 0.12);
+}
+
+.dark .cy-hero-badge {
+  color: #7ce3bb;
+}
+
+.dark .cy-hero-badge-dot {
+  background: #7ce3bb;
+  box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.18);
+}
+
+.dark .cy-link-more,
+.dark .cy-blog-nav-home,
+.dark .cy-blog-nav-link,
+.dark .cy-timeline-period,
+.dark .cy-about-role,
+.dark .cy-repo-name,
+.dark .cy-blog-year-title,
+.dark .cy-blog-item:hover .cy-blog-item-title {
+  color: #5bd6a2;
+}
+
+.dark .cy-hero-card {
+  background:
+    radial-gradient(42rem 20rem at 86% -18%, rgba(52, 211, 153, 0.08), transparent 60%),
+    linear-gradient(135deg, #12291e 0%, #163326 52%, #1b3f2f 100%);
+  border-color: rgba(110, 231, 183, 0.14);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+}
+
+.dark .cy-hero-card-deco::after {
+  background: rgba(52, 211, 153, 0.07);
+}
+
+.dark .cy-hero-badge {
+  color: #7ce3bb;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.dark .cy-hero-badge-dot {
+  background: #7ce3bb;
+  box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.16);
+}
+
+.dark .cy-gradient {
+  background: linear-gradient(135deg, #34d399 0%, #6ee7b9 55%, #a7f3d0 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* --- Long repo names must never force horizontal scroll (375px regression) --- */
+.cy-repo-card {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.cy-repo-header {
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.cy-repo-name {
+  overflow-wrap: anywhere;
+}
+
+/* --- Related posts (article bottom) --- */
+.cy-related {
+  margin: 0 0 1rem;
+}
+
+.cy-related-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--cy-text);
+  margin: 0 0 1rem;
+  letter-spacing: -0.01em;
+}
+
+.cy-related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 1024px) {
+  .cy-related-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .cy-related-grid { grid-template-columns: 1fr; }
 }

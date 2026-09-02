@@ -1,0 +1,242 @@
+{{ define "main" }}
+<div class="hx:mx-auto hextra-max-page-width">
+  {{ partial "sidebar.html" (dict "context" . "disableSidebar" true) }}
+  <main id="content" class="hx:w-full hx:break-words hx:min-h-[calc(100vh-var(--navbar-height))] hx:min-w-0">
+
+    <style>
+      /* ===== CV Page Styles ===== */
+      .cv-page {
+        max-width: 880px;
+        margin: 2.5rem auto;
+        padding: 2.5rem 2rem 3rem;
+        background: var(--cv-card-bg, #fff);
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        color: var(--cv-text, #222);
+        line-height: 1.7;
+        font-size: 0.95rem;
+      }
+
+      /* Dark mode */
+      .dark .cv-page {
+        --cv-card-bg: #1e1e2e;
+        --cv-text: #cdd6f4;
+        --cv-accent: #89b4fa;
+        --cv-accent-light: rgba(137,180,250,0.12);
+        --cv-heading-color: #cdd6f4;
+        --cv-muted: #6c7086;
+        --cv-border: #45475a;
+      }
+
+      /* ===== Header ===== */
+      .cv-header {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        margin-bottom: 0.5rem;
+      }
+
+      .cv-photo {
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: center;
+        border: 2px solid var(--cv-accent, #2a7ae2);
+        flex-shrink: 0;
+        background: var(--cv-card-bg, #fff);
+        box-sizing: border-box;
+        padding: 3px;
+      }
+
+      .dark .cv-photo {
+        background: #1e1e2e;
+      }
+
+      .cv-header-text {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .cv-header-text h1 {
+        font-size: 2rem;
+        font-weight: 800;
+        margin: 0 0 0.4rem;
+        letter-spacing: -0.02em;
+        color: var(--cv-heading-color, #111);
+      }
+
+      .cv-header-text p {
+        margin: 0.5rem 0 0;
+        color: var(--cv-text, #444);
+      }
+
+      .cv-header-text p:first-of-type {
+        font-size: 1.05rem;
+      }
+
+      /* ===== Responsive header ===== */
+      @media (max-width: 640px) {
+        .cv-header {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+
+        .cv-photo {
+          width: 100px;
+          height: 100px;
+        }
+
+        .cv-header-text h1 {
+          font-size: 1.6rem;
+        }
+      }
+
+      /* ===== Divider ===== */
+      .cv-page > hr {
+        border: none;
+        border-top: 2px solid var(--cv-border, #e5e7eb);
+        margin: 2rem 0;
+      }
+
+      /* ===== Section Headings (h2) ===== */
+      .cv-page h2 {
+        font-size: 1.35rem;
+        font-weight: 700;
+        color: var(--cv-accent, #2a7ae2);
+        border-left: 5px solid var(--cv-accent, #2a7ae2);
+        padding-left: 12px;
+        margin: 2rem 0 1rem;
+      }
+
+      /* ===== Lists ===== */
+      .cv-page ul {
+        list-style: disc;
+        padding-left: 1.4rem;
+        margin: 0.5rem 0;
+      }
+
+      .cv-page li {
+        margin-bottom: 0.5rem;
+      }
+
+      /* ===== Publication sub-headings (h3) ===== */
+      .cv-page h3 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--cv-heading-color, #333);
+        margin: 1.5rem 0 0.6rem;
+        padding-bottom: 0.3rem;
+        border-bottom: 1px solid var(--cv-border, #e5e7eb);
+      }
+
+      /* ===== Publication list — continuous numbering via CSS counter ===== */
+      .cv-page {
+        counter-reset: pub-counter;
+      }
+
+      .cv-page ol {
+        padding-left: 0;
+        margin: 0.5rem 0;
+        list-style: none;
+      }
+
+      .cv-page ol li {
+        margin-bottom: 1rem;
+        line-height: 1.6;
+        position: relative;
+        padding-left: 2.2rem;
+        counter-increment: pub-counter;
+      }
+
+      .cv-page ol li::before {
+        content: counter(pub-counter) ".";
+        position: absolute;
+        left: 0;
+        top: 0;
+        font-weight: 700;
+        color: var(--cv-accent, #2a7ae2);
+      }
+
+      /* Author line */
+      .cv-page ol li > p:first-child {
+        margin: 0 0 0.15rem;
+      }
+
+      /* Title link line */
+      .cv-page ol li > p:nth-child(2) {
+        margin: 0 0 0.15rem;
+      }
+
+      .cv-page ol li > p:nth-child(2) a {
+        font-weight: 600;
+        color: var(--cv-accent, #2a7ae2);
+        text-decoration: none;
+      }
+
+      .cv-page ol li > p:nth-child(2) a:hover {
+        text-decoration: underline;
+      }
+
+      /* Journal line */
+      .cv-page ol li > p:nth-child(3) {
+        margin: 0;
+        font-style: italic;
+        color: var(--cv-muted, #666);
+      }
+
+      .cv-page ol li > p:nth-child(3) em {
+        font-style: normal;
+        font-weight: 700;
+        color: var(--cv-text, #222);
+      }
+
+      /* ===== Links ===== */
+      .cv-page a {
+        color: var(--cv-accent, #2a7ae2);
+        text-decoration: none;
+      }
+
+      .cv-page a:hover {
+        text-decoration: underline;
+      }
+
+      /* ===== Responsive ===== */
+      @media (max-width: 640px) {
+        .cv-page {
+          padding: 1.5rem 1rem 2rem;
+          margin: 1rem 0.5rem;
+          border-radius: 8px;
+        }
+
+        .cv-page > h1 {
+          font-size: 1.6rem;
+        }
+
+        .cv-page h2 {
+          font-size: 1.15rem;
+        }
+      }
+    </style>
+
+    <div class="cv-page">
+      <!-- Header: Photo + Intro -->
+      <div class="cv-header">
+        <img src="{{ "images/myphoto.jpg" | relURL }}" alt="程宇" class="cv-photo">
+        <div class="cv-header-text">
+          <h1>程&nbsp;&nbsp;宇</h1>
+          <p>目前为<strong>&nbsp;中山大学生命科学学院 博士后</strong>，所在课题组为&nbsp;<a href="https://lifesciences.sysu.edu.cn/zh-hans/teacher/1560">陈月琴 研究组</a>。</p>
+          <p>本科毕业于深圳大学生物技术专业，博士毕业于中山大学生物学专业。主要围绕植物非编码 RNA 及非经典翻译开展生物信息学分析研究，研究成果发表于 <em>Developmental Cell</em>、<em>Molecular Plant</em>、<em>Genome Biology </em> 等国内外重要学术期刊。</p>
+          <p>本人具有较强的大规模生物信息学数据分析能力，掌握基本分子生物学实验技能，熟悉常规生物学实验方法，并具备良好的学习探索、科研分析与问题解决能力。</p>
+        </div>
+      </div>
+
+      <hr>
+
+      {{ .Content }}
+    </div>
+
+  </main>
+</div>
+{{ end }}

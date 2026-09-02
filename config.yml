@@ -65,6 +65,10 @@ menu:
       weight: 6
       params:
         type: search
+    - name: "切换主题"
+      weight: 7
+      params:
+        type: theme-toggle
 
   sidebar:
     - name: "更多"
@@ -81,10 +85,12 @@ menu:
 # ---------- 参数 ----------
 params:
   description: "生物信息学 | NGS数据分析 | Python/R 脚本 | 学习笔记"
+  images:
+    - images/og-image.png
 
   navbar:
     displayTitle: true
-    displayLogo: false
+    displayLogo: true
 
   footer:
     displayCopyright: true
@@ -118,11 +124,35 @@ params:
   imageZoom:
     enable: false
 
+  # 评论（giscus，基于 GitHub Discussions；2026-09-03 已启用）
+  # 剩余一步：浏览器里把 giscus App 安装到本仓库（https://github.com/apps/giscus → Configure → 仅选本仓库），
+  # 否则评论区可加载但访客无法发表。更换分类/仓库时在 giscus.app 重新生成 repoId/categoryId。
+  comments:
+    enable: true
+    type: giscus
+    giscus:
+      repo: "Chengy257/chengyu.github.io"
+      repoId: "R_kgDOL8t1Lw"
+      category: "Announcements"
+      categoryId: "DIC_kwDOL8t1L84DEvpB"
+      mapping: "pathname"
+
 # ---------- 分类法 ----------
 taxonomies:
   category: categories
   tag: tags
   series: series
+
+# ---------- 相关文章（文章页底部，按 tags/categories 共现） ----------
+related:
+  includeNewer: true
+  toLower: true
+  threshold: 50
+  indices:
+    - name: tags
+      weight: 80
+    - name: categories
+      weight: 40
 
 # ---------- 隐私 ----------
 privacy:

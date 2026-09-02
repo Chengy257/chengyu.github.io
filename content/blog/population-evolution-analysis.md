@@ -167,7 +167,7 @@ ggplot(dat) +
   labs(x = "Chr12", y = NULL)
 ```
 
-![群体进化分析：π 与 Tajima's D 分布](https://cdn.jsdelivr.net/gh/Chengy257/img-file-bed@main/img2/image-20260520135532210.png)
+{{< img src="images/posts/popgen-tajima-d.png" alt="群体进化分析：π 与 Tajima's D 分布" width="1132" height="749" >}}
 
 ### 结果解读示例
 

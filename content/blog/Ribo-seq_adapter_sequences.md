@@ -1,8 +1,10 @@
 ---
 title: "Ribo-seq 去接头处理常用序列及其来源整理记录"
-summary: " Ribo-seq 去接头处理常用序列及其来源整理记录，"
+summary: "整理 Ribo-seq 建库常用的去接头序列及其文献来源，覆盖多种常用试剂体系，方便实验前快速查阅比对。"
 date: 2026-05-28
 draft: false
+slug: "ribo-seq-adapter-sequences"
+aliases: ["/blog/Ribo-seq_adapter_sequences/"]
 tags: ["Ribo-seq", "生信分析", "Cutadapt"]
 categories: ["NGS分析"]
 author: "Cy257"

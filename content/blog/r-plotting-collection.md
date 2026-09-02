@@ -189,7 +189,7 @@ plot_PTU <- function(data, group) {
 }
 ```
 
-![PCA / tSNE / UMAP 对比](https://cdn.jsdelivr.net/gh/Chengy257/img-file-bed@main/img2/image-20240618172032095.png)
+{{< img src="images/posts/r-plotting-pca-tsne-umap.png" alt="PCA / tSNE / UMAP 对比" width="1630" height="482" >}}
 
 ---
 
@@ -269,7 +269,7 @@ ggplot(orf_type, aes(V1, V3, alluvium = V2, stratum = V2, label = V3)) +
   theme(legend.title = element_blank())
 ```
 
-![堆叠柱状图 + 冲击图](https://cdn.jsdelivr.net/gh/Chengy257/img-file-bed@main/img2/image-20240615154049273.png)
+{{< img src="images/posts/r-plotting-stacked-bar.png" alt="堆叠柱状图 + 冲击图" width="1246" height="605" >}}
 
 ### Mean + SD 柱状图
 
@@ -341,7 +341,7 @@ ggplot(data1, aes(x = year, y = n, fill = name)) +
 ggsave("streamgraph.pdf", width = 8, height = 4)
 ```
 
-![StreamGraph 示例](https://cdn.jsdelivr.net/gh/Chengy257/img-file-bed@main/img2/640)
+{{< img src="images/posts/r-plotting-streamgraph.webp" alt="StreamGraph 示例" width="1000" height="445" >}}
 
 ---
 
