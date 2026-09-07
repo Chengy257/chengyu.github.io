@@ -72,12 +72,14 @@ hugo server -D --bind 0.0.0.0
 ## 5. 内容约定（写文章/改简历必读）
 
 - front matter 标准字段：`title / summary / date / draft / tags / categories`。**summary 必填**（首页卡片展示）；新文章默认经 `hugo new`（archetype 含 draft:true）。**summary 质量线**：须概括文章方法与产出，不得与标题雷同、不得以逗号等标点悬空结尾，占位式 summary 视同缺失。
+- 标签/分类命名约定（2026-09-07 起）：软件名用官方大小写（如 PLINK、DESeq2、Ribo-seq）；新增 tag 前先 grep 全站已有标签，避免重复词或大小写变体把同一词条页拆成两个（Hugo taxonomy 区分大小写）；一文一 category，漏写会使文章从全部分类动线消失。
 - 内容图片引用统一用 `img` shortcode：`{{< img src="images/posts/x.png" alt="说明" width="1630" height="482" >}}`（自动 relURL + lazy + 响应式），源图存 `static/images/posts/`；改文件名时同步 `slug`/`aliases` 规则（URL 一律小写连字符，旧 URL 写入 aliases）。
 - 禁止引入 PaperMod 遗留字段（`showToc`、`TocOpen` 等，Hextra 不识别）；文章目录控制用页面参数 `toc: false/true`。
 - **单一数据源**（双处展示的内容只改数据文件，禁止双份硬编码）：
   - 论文 → `data/publications.yml`（首页「发表论文」与简历页共用）
   - 教育/工作经历、专业技能、研究兴趣 → `data/profile.yml`
   - 首页「开源项目」卡片 → `data/repos.yml`（描述为中文定制文案；star/语言构建时由 GitHub API 填充，失败自动降级为 0/yml 默认值）
+  - 分类描述（分类落地页卡片与分类词条页）→ `data/categories.yml`（key 用小写，模板按 `lower(分类名)` 查询；新增分类时同步补一行，缺失时页面自动降级不显示描述）
 - 自由文本例外：`content/about.md` 的「基本信息」「专业技能」段落与首页顶部欢迎语/技能卡片为各自语境定制文本，允许表述不同（改动时注意两处同步）。
 - 时区陷阱：`timeZone: Asia/Shanghai`，给文章配未来日期会导致 `buildFuture: false` 下不渲染。
 - 图片放 `static/images/`，引用走 `relURL`。
