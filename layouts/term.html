@@ -1,0 +1,46 @@
+{{ define "main" }}
+  {{- $isTag := eq .Data.Plural "tags" -}}
+  {{- $yearGroups := .Pages.GroupByDate "2006" "desc" -}}
+
+  <div class="hx:mx-auto hx:flex hextra-max-page-width">
+    {{ partial "sidebar.html" (dict "context" . "disableSidebar" true) }}
+    <article class="hx:w-full hx:break-words hx:flex hx:min-h-[calc(100vh-var(--hextra-navbar-height))] hx:min-w-0 hx:justify-center hx:pb-8 hx:pr-[calc(env(safe-area-inset-right)-1.5rem)]">
+      <main id="content" class="hx:w-full hx:min-w-0 cy-term-page">
+        <a href="{{ relLangURL .Data.Plural }}/" class="cy-tax-back">&larr; {{ if $isTag }}全部标签{{ else }}全部分类{{ end }}</a>
+        <header class="cy-tax-header">
+          <h1 class="cy-tax-title">{{ .Title }}</h1>
+          <p class="cy-tax-meta">共 {{ len .Pages }} 篇文章</p>
+          {{- if not $isTag -}}
+            {{- with index hugo.Data.categories (lower .Title) -}}
+              {{- with .description }}<p class="cy-tax-desc">{{ . }}</p>{{ end -}}
+            {{- end -}}
+          {{- end -}}
+        </header>
+
+        {{ range $yearGroups }}
+        <section class="cy-blog-year" id="year-{{ .Key }}">
+          <h2 class="cy-blog-year-title">{{ .Key }}</h2>
+          {{ range .Pages }}
+          <a href="{{ .RelPermalink }}" class="cy-blog-item">
+            <div class="cy-blog-item-left">
+              <span class="cy-blog-item-date">{{ .Date.Format "01-02" }}</span>
+            </div>
+            <div class="cy-blog-item-right">
+              <h3 class="cy-blog-item-title">{{ .Title }}</h3>
+              {{ if .Params.summary }}<p class="cy-blog-item-summary">{{ .Params.summary }}</p>{{ end }}
+              {{ if .Params.tags }}
+              <div class="cy-post-tags">
+                {{ range first 3 .Params.tags }}
+                <span class="cy-tag">{{ . }}</span>
+                {{ end }}
+              </div>
+              {{ end }}
+            </div>
+          </a>
+          {{ end }}
+        </section>
+        {{ end }}
+      </main>
+    </article>
+  </div>
+{{ end }}

@@ -1,0 +1,12 @@
+# 分类描述（taxonomy 落地页与词条页卡片使用；唯一数据源）
+# key 必须为小写（模板按 lower(分类名) 查询）；新增分类时同步补一行
+ngs分析:
+  description: "测序数据分析全流程实战：RNA-seq、WGCNA、GWAS、Ribo-seq、群体遗传与比较基因组学的完整记录。"
+工具开发:
+  description: "自研脚本、CLI 模板、简历生成器与 Agent 编排插件等工具型项目的开发笔记。"
+工具使用:
+  description: "Git 版本控制、代理网络等日常开发工具的使用与配置经验。"
+生信基础:
+  description: "文件格式、注释规则等生信领域的基础知识备忘。"
+r绘图:
+  description: "R/ggplot2 绘图代码片段与数据可视化技巧，复制修改即可复用。"

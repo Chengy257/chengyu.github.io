@@ -1,0 +1,47 @@
+{{ define "main" }}
+  {{- $isTags := eq .Data.Plural "tags" -}}
+  {{- $terms := .Data.Terms.ByCount -}}
+  {{- $totalPosts := 0 -}}
+  {{- range $terms -}}{{- $totalPosts = add $totalPosts .Count -}}{{- end -}}
+
+  <div class="hx:mx-auto hx:flex hextra-max-page-width">
+    {{ partial "sidebar.html" (dict "context" . "disableSidebar" true) }}
+    <article class="hx:w-full hx:break-words hx:flex hx:min-h-[calc(100vh-var(--hextra-navbar-height))] hx:min-w-0 hx:justify-center hx:pb-8 hx:pr-[calc(env(safe-area-inset-right)-1.5rem)]">
+      <main id="content" class="hx:w-full hx:min-w-0 cy-tax-page">
+        <header class="cy-tax-header">
+          <h1 class="cy-tax-title">{{ .Title }}</h1>
+          <p class="cy-tax-meta">{{ if $isTags }}共 {{ len $terms }} 个标签 · 全站 {{ $totalPosts }} 次引用{{ else }}共 {{ len $terms }} 个分类 · 收录 {{ $totalPosts }} 篇文章{{ end }}</p>
+          {{ if $isTags }}
+          <p class="cy-tax-desc">按关键词聚合；标签同时出现在每篇文章底部与相关文章卡片上。</p>
+          {{ else }}
+          <p class="cy-tax-desc">按研究主题归档，点击卡片查看该分类下的全部文章。</p>
+          {{ end }}
+        </header>
+
+        {{ if $isTags }}
+        <nav class="cy-tax-cloud" aria-label="标签云">
+          {{- range $terms -}}
+          <a href="{{ .Page.RelPermalink }}" class="cy-tax-cloud-link{{ if ge .Count 4 }} cy-tax-cloud-xl{{ else if ge .Count 2 }} cy-tax-cloud-lg{{ end }}">
+            {{ .Page.Title }}<span class="cy-tax-cloud-count">{{ .Count }}</span>
+          </a>
+          {{- end -}}
+        </nav>
+        {{ else }}
+        <div class="cy-tax-grid">
+          {{- range $terms -}}
+          <a href="{{ .Page.RelPermalink }}" class="cy-tax-card">
+            <div class="cy-tax-card-head">
+              <span class="cy-tax-card-name">{{ .Page.Title }}</span>
+              <span class="cy-tax-card-count">{{ .Count }} 篇</span>
+            </div>
+            {{- with index hugo.Data.categories (lower .Page.Title) -}}
+              {{- with .description }}<p class="cy-tax-card-desc">{{ . }}</p>{{ end -}}
+            {{- end -}}
+          </a>
+          {{- end -}}
+        </div>
+        {{ end }}
+      </main>
+    </article>
+  </div>
+{{ end }}

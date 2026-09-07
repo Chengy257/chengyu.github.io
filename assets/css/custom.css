@@ -1234,3 +1234,209 @@ article main#content h1 {
 @media (max-width: 640px) {
   .cy-related-grid { grid-template-columns: 1fr; }
 }
+
+/* ===================================================================
+   Phase 5 (2026-09) — Taxonomy landing & term pages（分类/标签归档）
+   =================================================================== */
+
+.cy-tax-page {
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: 1.25rem 1.5rem 2rem;
+}
+
+.cy-term-page {
+  max-width: 58rem;
+  margin: 0 auto;
+  padding: 1.25rem 1.5rem 2rem;
+}
+
+@media (max-width: 640px) {
+  .cy-tax-page,
+  .cy-term-page {
+    padding: 0.75rem 1.25rem 1.5rem;
+  }
+}
+
+.cy-tax-back {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: var(--cy-accent);
+  text-decoration: none;
+  margin: 0.25rem 0 0.75rem;
+}
+
+.cy-tax-back:hover {
+  color: var(--cy-accent-light);
+}
+
+.cy-tax-header {
+  margin: 0 0 1.75rem;
+}
+
+.cy-tax-title {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--cy-text);
+  margin: 0 0 0.35rem;
+}
+
+.cy-tax-meta {
+  font-size: 0.9rem;
+  color: var(--cy-text-muted);
+  margin: 0 0 0.3rem;
+}
+
+.cy-tax-desc {
+  font-size: 0.92rem;
+  color: var(--cy-text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* --- 分类：卡片网格（与 cy-post-card 同语言） --- */
+.cy-tax-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 900px) {
+  .cy-tax-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .cy-tax-grid { grid-template-columns: 1fr; }
+}
+
+.cy-tax-card {
+  display: block;
+  background: var(--cy-bg-card);
+  border: 1px solid var(--cy-border);
+  border-radius: var(--cy-radius);
+  padding: 1.15rem 1.25rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.cy-tax-card:hover {
+  border-color: var(--cy-accent-light);
+  box-shadow: 0 2px 12px rgba(26, 92, 63, 0.08);
+  transform: translateY(-2px);
+}
+
+.cy-tax-card:focus-visible {
+  outline: 2px solid var(--cy-accent-light);
+  outline-offset: 2px;
+}
+
+.cy-tax-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.cy-tax-card-name {
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--cy-text);
+}
+
+.cy-tax-card:hover .cy-tax-card-name {
+  color: var(--cy-accent);
+}
+
+.cy-tax-card-count {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--cy-accent);
+  background: var(--cy-accent-bg);
+  border-radius: 9999px;
+  padding: 0.12rem 0.55rem;
+  white-space: nowrap;
+}
+
+.cy-tax-card-desc {
+  font-size: 0.88rem;
+  color: var(--cy-text-secondary);
+  line-height: 1.55;
+  margin: 0.55rem 0 0;
+}
+
+/* --- 标签：按文章数分档的 tag cloud --- */
+.cy-tax-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 0.7rem;
+  align-items: baseline;
+}
+
+.cy-tax-cloud-link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--cy-text-secondary);
+  background: var(--cy-bg-section);
+  border: 1px solid var(--cy-border);
+  border-radius: 9999px;
+  padding: 0.28rem 0.75rem;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.cy-tax-cloud-link:hover {
+  color: var(--cy-accent);
+  border-color: var(--cy-accent-light);
+  background: var(--cy-accent-bg);
+}
+
+.cy-tax-cloud-link:focus-visible {
+  outline: 2px solid var(--cy-accent-light);
+  outline-offset: 2px;
+}
+
+.cy-tax-cloud-lg {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--cy-text);
+}
+
+.cy-tax-cloud-xl {
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: var(--cy-accent);
+}
+
+.cy-tax-cloud-count {
+  font-size: 0.72rem;
+  color: var(--cy-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- 词条页年份区块间距（与博客列表同源） --- */
+.cy-term-page .cy-blog-year:first-of-type {
+  margin-top: 0;
+}
+
+.cy-term-page .cy-blog-year {
+  margin-bottom: 2.5rem;
+}
+
+/* --- 暗色变体（mint 绿，与现有 tag/导航一致） --- */
+.dark .cy-tax-back,
+.dark .cy-tax-cloud-xl {
+  color: #5bd6a2;
+}
+
+.dark .cy-tax-card-count {
+  color: #7ce3bb;
+}
+
+.dark .cy-tax-card:hover .cy-tax-card-name,
+.dark .cy-tax-cloud-link:hover {
+  color: #7ce3bb;
+}
