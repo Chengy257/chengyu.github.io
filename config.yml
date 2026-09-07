@@ -17,9 +17,9 @@ buildDrafts: false
 buildFuture: false
 enableEmoji: true
 enableGitInfo: true
-
-pagination:
-  pagerSize: 10
+# 词条页/列表标题保持 front matter 原样：软件名有官方大小写（PLINK、ggplot2、vcftools…），
+# 默认的 capitalizeListTitles 会改写成 Argparse/Ggplot2，与文章页标签 chips 不一致
+capitalizeListTitles: false
 
 outputs:
   home:
@@ -44,6 +44,8 @@ markup:
     tabWidth: 4
 
 # ---------- 菜单 ----------
+# 主菜单收敛为主动线（2026-09-07，方案 A）：分类并入博客列表筛选，标签作为页内横向元素；
+# 分类/标签归档页仍在（博客列表左栏「按分类」/ 文章底部标签可达），移动端经抽屉 menu.sidebar 进入
 menu:
   main:
     - name: "首页"
@@ -52,21 +54,15 @@ menu:
     - name: "博客"
       pageRef: /blog
       weight: 2
-    - name: "分类"
-      pageRef: /categories
-      weight: 3
-    - name: "标签"
-      pageRef: /tags
-      weight: 4
     - name: "个人简历"
       pageRef: /about
-      weight: 5
+      weight: 3
     - name: "搜索"
-      weight: 6
+      weight: 4
       params:
         type: search
     - name: "切换主题"
-      weight: 7
+      weight: 5
       params:
         type: theme-toggle
 
@@ -75,8 +71,8 @@ menu:
       params:
         type: separator
       weight: 1
-    - name: "个人简历"
-      pageRef: "/about"
+    - name: "分类"
+      pageRef: "/categories"
       weight: 2
     - name: "标签"
       pageRef: "/tags"
@@ -105,6 +101,10 @@ params:
     width: normal
 
   blog:
+    # 博客列表分页大小：取远超文章总数（当前 15 篇）的值保持单页——
+    # 左栏年份锚点按当前分页内的年份组计算，跨页会静默失效，见 OPTIMIZATION-PLAN.md 5.4
+    list:
+      pagerSize: 999
     article:
       displayPagination: true
 

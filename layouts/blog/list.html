@@ -21,6 +21,11 @@
             <a href="#year-{{ .Key }}" class="cy-blog-nav-link">{{ .Key }} ({{ len .Pages }})</a>
             {{ end }}
             <hr class="cy-blog-nav-divider">
+            <div class="cy-blog-nav-label">按分类</div>
+            {{ range site.Taxonomies.categories.ByCount }}
+            <a href="{{ .Page.RelPermalink }}" class="cy-blog-nav-link">{{ .Page.Title }} ({{ .Count }})</a>
+            {{ end }}
+            <hr class="cy-blog-nav-divider">
             <div class="cy-blog-nav-label">共 {{ len $paginator.Pages }} 篇</div>
           </div>
         </aside>
