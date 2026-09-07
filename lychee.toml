@@ -9,5 +9,13 @@ exclude = [
   "genomebiology\\.biomedcentral\\.com",
   "www\\.nature\\.com",
   "www\\.science\\.org",
+  # DOI 中转链最终 302 到出版商站，出版商对爬虫返回 403（上面域名只匹配文中直链，覆盖不了 doi.org 形式）
+  "doi\\.org",
+  # NEB（New England Biolabs）官网反爬 403，浏览器可正常访问
+  "www\\.neb\\.com",
+  # Biostars 对非浏览器 UA 返回 403
+  "biostars\\.org",
+  # UCLA Horvath 实验室站（WGCNA 官方文档）证书过期且间歇 503，属第三方故障，文中链接保留
+  "horvath\\.genetics\\.ucla\\.edu",
 ]
-max_retries = 2
+max_retries = 3

@@ -32,16 +32,25 @@ jobs:
           TZ: Asia/Shanghai
           HUGO_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Lay out site under subpath dir
+        # baseURL 带 /chengyu.github.io/ 子路径，产物内链都是根相对形式；
+        # lychee 检查本地文件时根相对链接按 root_dir + 链接路径映射，需还原同名目录
+        run: |
+          mkdir audit-root
+          mv public audit-root/chengyu.github.io
+
       - name: Check links (lychee)
         uses: lycheeverse/lychee-action@v2
         with:
           args: >-
             --verbose
             --no-progress
-            --max-retries 2
+            --max-retries 3
+            --insecure
+            --root-dir ${{ github.workspace }}/audit-root
             --exclude 'localhost'
             --exclude '127\.0\.0\.1'
-            './public/**/*.html'
+            './audit-root/**/*.html'
           format: markdown
           output: ./lychee-report.md
           fail: true

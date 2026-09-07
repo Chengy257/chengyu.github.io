@@ -32,7 +32,7 @@ GWAS 的基本流程可以概括为：
 
 | 数据库 | 下载地址 | 说明 |
 |--------|---------|------|
-| [SNP-Seek](https://snpseek.irri.org/index.zul) | https://snpseek.irri.org/_download.zul | 3K Rice SNP 数据 |
+| [SNP-Seek](https://brs-snpseek.duckdns.org/3kRG) | https://brs-snpseek.duckdns.org/3kRG | 3K Rice SNP 数据（IRRI 主站暂停服务，CIMMYT 镜像提供在线查询） |
 | [RiceVarMap v2.0](https://ricevarmap.ncpgr.cn/) | https://ricevarmap.ncpgr.cn/download/ | Rice4k SNP 数据 |
 
 ### VCF 预处理与格式转换
