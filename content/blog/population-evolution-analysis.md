@@ -3,7 +3,7 @@ title: "群体进化分析：π、Fst、Tajima's D 计算与可视化"
 summary: "使用 vcftools/plink 计算群体遗传多样性指标（π、Fst、Tajima's D），并结合 R 进行基因组区域可视化。"
 date: 2025-01-13
 draft: false
-tags: ["群体遗传", "vcftools", "plink", "Tajima's D", "Fst", "π"]
+tags: ["群体遗传", "vcftools", "PLINK", "Tajima's D", "Fst", "π"]
 categories: ["NGS分析"]
 author: "Cy257"
 ---
